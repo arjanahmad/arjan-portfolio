@@ -1,16 +1,83 @@
-# React + Vite
+# 🚀 Arjan Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive, and visually engaging personal portfolio built with React and Vite. This portfolio showcases my skills, projects, certifications, and journey as an aspiring Full Stack Developer.
 
-Currently, two official plugins are available:
+## 🌐 Live Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+🔗 https://YOUR-NETLIFY-LINK.netlify.app
 
-## React Compiler
+## ✨ Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Modern & Responsive UI
+- Interactive Particle Background
+- Smooth Animations
+- Professional Hero Section
+- Skills Showcase
+- Projects Section
+- Certifications
+- Resume Download
+- Contact Section
+- Mobile Friendly Design
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- React.js
+- Vite
+- JavaScript (ES6+)
+- HTML5
+- CSS3
+- Tailwind CSS
+- React Icons
+
+## 📂 Project Structure
+
+```
+src/
+ ├── components/
+ ├── assets/
+ ├── App.jsx
+ └── main.jsx
+```
+
+## 🚀 Getting Started
+
+Clone the repository
+
+```bash
+git clone https://github.com/arjanahmad/arjan-portfolio.git
+```
+
+Install dependencies
+
+```bash
+npm install
+```
+
+Run the project
+
+```bash
+npm run dev
+```
+
+Build for production
+
+```bash
+npm run build
+```
+
+## 📬 Contact
+
+**Arjan Ahmad**
+
+GitHub:
+https://github.com/arjanahmad
+
+LinkedIn:
+(Add your LinkedIn Profile)
+
+Email:
+(Add your Email)
+
+---
+
+⭐ If you like this project, don't forget to give it a Star!
