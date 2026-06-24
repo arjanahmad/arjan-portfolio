@@ -103,13 +103,13 @@ const Hero = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6, duration: 0.5 }}
           >
-            <a href="https://github.com" target="_blank" rel="noreferrer" className="hero-social-link" aria-label="GitHub">
+            <a href="https://github.com/arjanahmad" target="_blank" rel="noreferrer" className="hero-social-link" aria-label="GitHub">
               <FiGithub size={20} />
             </a>
-            <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="hero-social-link" aria-label="LinkedIn">
+            <a href="https://linkedin.com/in/arjan-ahmad-srmu" target="_blank" rel="noreferrer" className="hero-social-link" aria-label="LinkedIn">
               <FiLinkedin size={20} />
             </a>
-            <a href="mailto:arjan.ahmad@example.com" className="hero-social-link" aria-label="Email">
+            <a href="mailto:arjanahmad7861@gmail.com" className="hero-social-link" aria-label="Email">
               <Mail size={20} />
             </a>
           </motion.div>
