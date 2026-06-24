@@ -3,8 +3,7 @@ import { motion } from 'framer-motion';
 import { Mail, ArrowRight, Download } from 'lucide-react';
 import { FiGithub, FiLinkedin } from 'react-icons/fi';
 import devAvatar from '../assets/dev_avatar.png';
-import './Hero.css';
-
+import './Hero.css'; 
 const roles = ["Web Developer", "React Developer", "Problem Solver", "Tech Enthusiast"];
 
 const Hero = () => {
@@ -93,8 +92,9 @@ const Hero = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5, duration: 0.5 }}
           >
-            Welcome to my space. I specialize in designing and building clean, high-performance web applications, 
-            focusing on modern architectures, responsive layouts, and robust user experiences.
+            Turning ideas into functional web experiences through clean code, modern technologies, and continuous learning. Focused on building responsive applications, solving real-world problems, and growing as a developer every day.
+            {/*Welcome to my space. I specialize in designing and building clean, high-performance web applications, 
+            focusing on modern architectures, responsive layouts, and robust user experiences.*/}
           </motion.p>
 
           <motion.div 

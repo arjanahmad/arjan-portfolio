@@ -4,13 +4,16 @@ import './Skills.css';
 const Skills = () => {
   const skillsData = {
     Frontend: [
-      { name: "HTML", level: 90 },
-      { name: "CSS", level: 85 },
-      { name: "JavaScript", level: 80 },
-      { name: "React.js", level: 75 }
+      { name: "HTML", level: 80 },
+      { name: "CSS", level: 60 },
+      { name: "JavaScript", level: 55 },
+      { name: "React.js", level: 50 }
     ],
     Programming: [
-      { name: "Core Java", level: 75 }
+      { name: "Core Java", level: 65 },
+     /* { name: "Python", level: 60 },*/
+      { name: "C++", level: 50 },
+      { name: "C", level: 45 } 
     ],
     Database: [
       { name: "MySQL", level: 70 }
@@ -18,11 +21,14 @@ const Skills = () => {
     Tools: [
       { name: "Git", level: 80 },
       { name: "GitHub", level: 85 },
-      { name: "VS Code", level: 90 }
+      { name: "VS Code", level: 90 },
+      { name: "IntelliJ IDEA", level: 80 },
     ],
     Other: [
       { name: "Problem Solving", level: 85 },
-      { name: "Responsive Design", level: 90 }
+      { name: "Responsive Design", level: 90 },
+      { name: "Communication", level: 75 },
+      { name: "Team Collaboration", level: 80 }
     ]
   };
 

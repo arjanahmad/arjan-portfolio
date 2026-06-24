@@ -2,7 +2,8 @@ import emailjs from '@emailjs/browser';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, Send, Check, AlertCircle } from 'lucide-react';
-import { FiGithub, FiLinkedin } from 'react-icons/fi';
+/*import { FiGithub, FiLinkedin } from 'react-icons/fi';*/
+import { FiGithub, FiLinkedin, FiInstagram } from 'react-icons/fi';
 import './Contact.css';
 
 const Contact = () => {
@@ -110,6 +111,15 @@ const Contact = () => {
                 <FiLinkedin size={20} />
                 <span>LinkedIn</span>
               </a>
+              <a
+  href="https://www.instagram.com/mr.arjaan786"
+  target="_blank"
+  rel="noreferrer"
+  className="channel-btn"
+>
+  <FiInstagram size={20} />
+  <span>Instagram</span>
+</a>
             </div>
           </div>
         </motion.div>

@@ -14,7 +14,7 @@ const About = () => {
       title: "Education",
       institution: "Shri Ramswaroop Memorial University (SRMU)",
       degree: "Bachelor of Computer Applications (BCA)",
-      duration: "Class of 2026 | Lucknow, India",
+      duration: "2023-2026 | Lucknow, India",
       content: "Focused on core computer science concepts, database management, web design, and structured programming. Actively participated in technical societies and projects."
     },
     {
@@ -22,19 +22,19 @@ const About = () => {
       title: "Strengths",
       bullets: [
         "Rapid technology adaptation & continuous self-learning.",
-        "Analytical debugging & structured problem solving.",
-        "High attention to details in UX and responsive web structures.",
-        "Collaborative communicator and dedicated team player."
+        "Fast Learner with a Growth Mindset.",
+        "Effective Communication & Team Collaboration.",
+        "Creative Thinker with a User-First Approach."
       ]
     },
     {
-      icon: <Heart className="about-icon icon-violet" size={24} />,
+      icon: <Heart className="about-icon icon-violet" size={24} color="red" />,
       title: "Interests",
       bullets: [
-        "Full-Stack Architecture & Modern SaaS Platforms.",
-        "Cybersecurity, Network Security, and ethical web penetration testing.",
-        "Open-source software contribution and community developer meetups.",
-        "Exploring emerging AI, LLMs integration in web interfaces."
+        "Web Development & Creating User-Friendly Digital Experiences.",
+        "Cybersecurity and Understanding How Systems Stay Secure.",
+        "Taking on New Challenges and Continuously Expanding My Skill Set.",
+        "AI-Powered Tools and the Future of Technology."
       ]
     }
   ];
@@ -85,10 +85,7 @@ const About = () => {
         >
           <h3 className="bio-title">Hello, I'm Arjan Ahmad</h3>
           <p className="bio-text">
-            I am a highly motivated computer applications graduate specializing in web engineering. I believe in 
-            crafting web experiences that aren't just visually engaging, but also highly performant, accessible, and secure. 
-            Throughout my academic journey, I have focused on mastering HTML, CSS, JavaScript, and React while keeping a strong foundation 
-            in core programming principles and systems.
+           Passionate about building modern web experiences that blend clean design with seamless functionality. I enjoy creating responsive, interactive, and user-centric applications using HTML, CSS, JavaScript, and React. Driven by curiosity and continuous learning, I focus on developing solutions that are fast, scalable, and impactful while constantly exploring new technologies and industry trends.
           </p>
           <p className="bio-text">
             Beyond regular coding, I'm deeply fascinated by IT infrastructures and cybersecurity, analyzing how protocols operate and 

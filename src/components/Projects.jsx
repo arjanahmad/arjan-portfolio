@@ -13,8 +13,8 @@ const Projects = () => {
       description: "A premium, modern, and fully responsive developer portfolio built with React, Vite, and Framer Motion. Features customizable details, dark navy themes, and seamless section scrolling.",
       tech: ["React.js", "Vite", "Framer Motion", "CSS"],
       category: "Web",
-      github: "https://github.com",
-      live: "https://github.com"
+      github: "https://github.com/arjanahmad/CODSOFT/tree/main/Portfolio",
+      live: "https://arjan-personal-portfolio.netlify.app/"
     },
     {
       id: 2,
@@ -22,8 +22,8 @@ const Projects = () => {
       description: "A visually immersive, high-impact gaming landing page featuring game libraries, hover states, and fully responsive grid components styled for gamers.",
       tech: ["HTML", "CSS", "JavaScript", "Framer Motion"],
       category: "Web",
-      github: "https://github.com",
-      live: "https://github.com"
+      github: "https://github.com/arjanahmad/CODSOFT/tree/main/Landing-Page",
+      live: "https://all-gxmes.netlify.app/."
     },
     {
       id: 3,
@@ -31,8 +31,8 @@ const Projects = () => {
       description: "A clean math utility app with expression parsing, custom UI modes, responsive grid buttons, and detailed operation tracking history logs.",
       tech: ["React.js", "CSS"],
       category: "Utility",
-      github: "https://github.com",
-      live: "https://github.com"
+      github: "https://github.com/arjanahmad/CODSOFT/tree/main/Calculator",
+      live: "https://cxlculxtor.netlify.app/"
     }
   ];
 

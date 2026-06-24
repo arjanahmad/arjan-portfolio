@@ -79,7 +79,7 @@ const Navbar = () => {
     <nav className={`navbar ${isScrolled ? 'navbar-scrolled' : ''}`}>
       <div className="navbar-container">
         <a href="#home" className="navbar-logo" onClick={(e) => handleLinkClick(e, 'home')}>
-          <span className="text-gradient">Arjan</span>
+          <span className="text-gradient">ARJXN</span>
         </a>
 
         {/* Desktop Menu */}

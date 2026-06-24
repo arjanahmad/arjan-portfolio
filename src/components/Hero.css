@@ -197,3 +197,7 @@
     height: 240px;
   }
 }
+.hero-section {
+  position: relative;
+  z-index: 1;
+}

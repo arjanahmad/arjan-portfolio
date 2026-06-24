@@ -1,9 +1,8 @@
-/* App component specific styling (if any). Most layout is covered in index.css */
 .app-container {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: var(--bg-dark);
+  background-color: transparent;
 }
 
 .main-content {

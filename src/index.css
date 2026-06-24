@@ -2,7 +2,7 @@
 
 :root {
   /* Premium Palette */
-  --bg-dark: #0f172a;       /* Slate 900 */
+  --bg-dark: #011239;       /* Slate 900 */
   --bg-darker: #0b0f19;     /* Slate 950 variant */
   --bg-card: rgba(30, 41, 59, 0.4); /* Slate 800 with transparency */
   
@@ -245,3 +245,15 @@ body::before {
     font-size: 1.875rem;
   }
 }
+
+/* Global Star-Field Background Container */
+#tsparticles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;          /* behind all standard elements */
+  pointer-events: none; /* allow click events to pass through to sections/buttons */
+}
+
