@@ -15,6 +15,38 @@
   flex-direction: column;
   position: relative;
   overflow: hidden;
+  transition: 
+    transform .35s cubic-bezier(.22,.61,.36,1),
+    box-shadow .35s,
+    background .35s,
+    border-color .35s;
+  will-change: transform;
+}
+
+.cert-card:hover {
+  transform: translateY(-6px) scale(1.03);
+  border-color: rgba(139, 92, 246, 0.3);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(139, 92, 246, 0.15);
+}
+
+/* Glass reflection sheen sweep on card hover */
+.cert-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 120%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
+  transform: skewX(-20deg);
+  transition: none;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.cert-card:hover::after {
+  left: 150%;
+  transition: all 0.75s ease-in-out;
 }
 
 .cert-card-header {
@@ -109,6 +141,13 @@
   font-size: 0.8rem;
   border-radius: 6px;
   gap: 0.4rem;
+  transition: all 0.3s cubic-bezier(.22,.61,.36,1);
+}
+
+.cert-card:hover .btn-cert-action {
+  border-color: var(--primary-violet);
+  background: rgba(139, 92, 246, 0.05);
+  transform: translateY(-2px);
 }
 
 @media (max-width: 992px) {

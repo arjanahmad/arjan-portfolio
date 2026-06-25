@@ -53,7 +53,7 @@ const About = () => {
   };
 
   return (
-    <section id="about" className="about-section container">
+    <section id="about" className="about-section container section-reveal">
       <div className="section-header">
         <motion.h2 
           className="section-title"

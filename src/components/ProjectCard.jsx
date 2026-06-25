@@ -34,10 +34,11 @@ const ProjectCard = ({ project, index }) => {
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
     >
-      <div 
-        className="project-card-image" 
-        style={{ background: getPlaceholderStyle(project.id) }}
-      >
+      <div className="project-card-image">
+        <div 
+          className="project-card-bg"
+          style={{ background: getPlaceholderStyle(project.id) }}
+        />
         <div className="project-placeholder-overlay">
           <span className="project-badge-tag" style={{ backgroundColor: getAccentColor(project.id) }}>
             {project.category}

@@ -73,7 +73,7 @@ const Certifications = () => {
   };
 
   return (
-    <section id="certifications" className="certifications-section container">
+    <section id="certifications" className="certifications-section container section-reveal">
       <div className="section-header">
         <motion.h2 
           className="section-title"
@@ -105,7 +105,6 @@ const Certifications = () => {
             whileInView="visible"
             viewport={{ once: true }}
             custom={idx}
-            whileHover={{ y: -5, borderColor: 'rgba(139, 92, 246, 0.3)' }}
           >
             <div className="cert-card-header">
               <div className="cert-icon-wrapper">

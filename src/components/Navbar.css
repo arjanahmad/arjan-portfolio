@@ -7,16 +7,21 @@
   display: flex;
   align-items: center;
   z-index: 1000;
-  transition: var(--transition-smooth);
+  transition: 
+    height .35s cubic-bezier(.22,.61,.36,1),
+    background .35s cubic-bezier(.22,.61,.36,1),
+    backdrop-filter .35s cubic-bezier(.22,.61,.36,1),
+    border-color .35s cubic-bezier(.22,.61,.36,1);
   background: transparent;
 }
 
 .navbar-scrolled {
   height: 70px;
-  background: rgba(15, 23, 42, 0.75);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: rgba(11, 18, 44, 0.65);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border-glass);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
 }
 
 .navbar-container {
@@ -53,31 +58,27 @@
   font-family: var(--font-heading);
   padding: 0.5rem 0;
   position: relative;
-}
-
-.nav-links::after {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 2px;
-  bottom: 0;
-  left: 0;
-  background: linear-gradient(90deg, var(--primary-cyan), var(--primary-violet));
-  transition: var(--transition-smooth);
+  transition: color 0.3s ease;
 }
 
 .nav-links:hover {
   color: var(--text-primary);
 }
 
-.nav-links:hover::after,
-.nav-links.active::after {
-  width: 100%;
-}
-
 .nav-links.active {
   color: var(--text-primary);
   font-weight: 600;
+}
+
+.active-underline {
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--primary-cyan), var(--primary-violet));
+  border-radius: 9999px;
+  z-index: 2;
 }
 
 .nav-icon {
@@ -146,4 +147,42 @@
   .nav-icon {
     display: block;
   }
+}
+
+.navbar-controls {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.theme-toggle-btn {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-glass);
+  color: var(--text-primary);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 
+    transform 0.35s cubic-bezier(.22,.61,.36,1), 
+    box-shadow 0.35s,
+    background 0.35s,
+    border-color 0.35s,
+    color 0.35s;
+  will-change: transform;
+}
+
+.theme-toggle-btn:hover {
+  background: rgba(6, 182, 212, 0.08);
+  border-color: var(--primary-cyan);
+  color: var(--primary-cyan);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 0 10px rgba(6, 182, 212, 0.2);
+}
+
+.theme-toggle-btn:active {
+  transform: scale(0.95);
 }

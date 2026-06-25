@@ -43,7 +43,7 @@ const Projects = () => {
     : projectsData.filter(p => p.category === activeFilter);
 
   return (
-    <section id="projects" className="projects-section container">
+    <section id="projects" className="projects-section container section-reveal">
       <div className="section-header">
         <motion.h2 
           className="section-title"

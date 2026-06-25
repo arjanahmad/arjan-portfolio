@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Sun, Moon } from 'lucide-react';
+import { motion } from 'framer-motion';
 import './Navbar.css';
 
 const navLinks = [
@@ -15,6 +16,10 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const [theme, setTheme] = useState(() => {
+    const savedTheme = localStorage.getItem('theme');
+    return savedTheme ? savedTheme : 'dark';
+  });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -59,6 +64,19 @@ const Navbar = () => {
     };
   }, []);
 
+  useEffect(() => {
+    if (theme === 'light') {
+      document.body.classList.add('light-mode');
+    } else {
+      document.body.classList.remove('light-mode');
+    }
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
+  };
+
   const handleLinkClick = (e, targetId) => {
     e.preventDefault();
     setIsOpen(false);
@@ -92,14 +110,28 @@ const Navbar = () => {
                 onClick={(e) => handleLinkClick(e, link.targetId)}
               >
                 {link.name}
+                {activeSection === link.targetId && (
+                  <motion.span
+                    layoutId="activeUnderline"
+                    className="active-underline"
+                    transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                  />
+                )}
               </a>
             </li>
           ))}
         </ul>
 
-        {/* Mobile Menu Icon */}
-        <div className="nav-icon" onClick={() => setIsOpen(!isOpen)} aria-label="Toggle Navigation Menu">
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
+        {/* Controls: Theme Toggle & Mobile Menu Icon */}
+        <div className="navbar-controls">
+          <button className="theme-toggle-btn" onClick={toggleTheme} aria-label="Toggle Theme">
+            {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+          </button>
+
+          {/* Mobile Menu Icon */}
+          <div className="nav-icon" onClick={() => setIsOpen(!isOpen)} aria-label="Toggle Navigation Menu">
+            {isOpen ? <X size={24} /> : <Menu size={24} />}
+          </div>
         </div>
       </div>
 

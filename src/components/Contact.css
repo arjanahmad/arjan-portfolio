@@ -113,14 +113,21 @@
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid var(--border-glass);
   color: var(--text-secondary);
-  transition: var(--transition-smooth);
+  transition: 
+    transform .35s cubic-bezier(.22,.61,.36,1),
+    box-shadow .35s,
+    background .35s,
+    border-color .35s,
+    color .35s;
+  will-change: transform;
 }
 
 .channel-btn:hover {
   background: rgba(6, 182, 212, 0.08);
   border-color: var(--primary-cyan);
   color: var(--primary-cyan);
-  transform: translateY(-2px);
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 6px 15px rgba(6, 182, 212, 0.15), 0 0 10px rgba(6, 182, 212, 0.05);
 }
 
 /* Form Styles */

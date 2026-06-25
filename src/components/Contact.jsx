@@ -52,7 +52,7 @@ const Contact = () => {
 };
 
   return (
-    <section id="contact" className="contact-section container">
+    <section id="contact" className="contact-section container section-reveal">
       <div className="section-header">
         <motion.h2 
           className="section-title"
