@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { ParticlesProvider, Particles } from '@tsparticles/react';
 import { loadFull } from 'tsparticles';
 
@@ -6,6 +7,24 @@ const ParticlesBackground = () => {
   const initParticles = async (engine) => {
     await loadFull(engine);
   };
+
+  // Track light mode state to dynamically update particle color schemes
+  const [isLightMode, setIsLightMode] = useState(() => 
+    typeof document !== 'undefined' ? document.body.classList.contains('light-mode') : false
+  );
+
+  useEffect(() => {
+    const observer = new MutationObserver(() => {
+      setIsLightMode(document.body.classList.contains('light-mode'));
+    });
+
+    observer.observe(document.body, {
+      attributes: true,
+      attributeFilter: ['class'],
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   const options = {
     fpsLimit: 60,
@@ -22,14 +41,18 @@ const ParticlesBackground = () => {
         },
       },
       color: {
-        // Dark-blue/cyan/purple premium theme harmony
-        value: ['#06b6d4', '#8b5cf6', '#a78bfa', '#38bdf8', '#ffffff'],
+        // Dark-blue/cyan/purple premium theme harmony in dark mode, visible colors in light mode
+        value: isLightMode 
+          ? ['#0891b2', '#7c3aed', '#6366f1', '#0284c7', '#475569']
+          : ['#06b6d4', '#8b5cf6', '#a78bfa', '#38bdf8', '#ffffff'],
       },
       shape: {
         type: 'circle',
       },
       opacity: {
-        value: { min: 0.1, max: 0.7 },
+        value: isLightMode 
+          ? { min: 0.15, max: 0.6 }
+          : { min: 0.1, max: 0.7 },
         animation: {
           enable: true,
           speed: 0.5, // Soft, slow twinkling glow
@@ -47,8 +70,8 @@ const ParticlesBackground = () => {
       links: {
         enable: true,
         distance: 150, // Stars connect when nearby
-        color: '#06b6d4', // Cyan constellation/network lines
-        opacity: 0.15, // Thin and subtle
+        color: isLightMode ? '#0891b2' : '#06b6d4', // Cyan constellation/network lines
+        opacity: isLightMode ? 0.12 : 0.15, // Thin and subtle
         width: 1,
         triangles: {
           enable: false,
@@ -85,7 +108,7 @@ const ParticlesBackground = () => {
         grab: {
           distance: 180,
           links: {
-            opacity: 0.35, // Clearer lines near cursor
+            opacity: isLightMode ? 0.28 : 0.35, // Clearer lines near cursor
           },
         },
       },
@@ -104,3 +127,4 @@ const ParticlesBackground = () => {
 };
 
 export default ParticlesBackground;
+
