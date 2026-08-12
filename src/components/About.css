@@ -9,6 +9,19 @@
 
 .about-bio {
   padding: 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-bio::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--primary-cyan), var(--primary-violet));
+  opacity: 0.6;
 }
 
 .bio-title {
@@ -41,6 +54,8 @@
   display: flex;
   flex-direction: column;
   height: 100%;
+  position: relative;
+  overflow: hidden;
 }
 
 .about-card-header {
@@ -52,14 +67,21 @@
 
 .about-icon {
   flex-shrink: 0;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.about-card:hover .about-icon {
+  transform: scale(1.12) rotate(4deg);
 }
 
 .icon-cyan {
   color: var(--primary-cyan);
+  filter: drop-shadow(0 0 8px rgba(6, 182, 212, 0.3));
 }
 
 .icon-violet {
   color: var(--primary-violet);
+  filter: drop-shadow(0 0 8px rgba(139, 92, 246, 0.3));
 }
 
 .about-card-title {
@@ -77,9 +99,20 @@
 .about-education-details {
   display: flex;
   flex-direction: column;
-  margin-bottom: 1rem;
-  border-left: 2px solid rgba(255, 255, 255, 0.05);
+  margin-bottom: 1.25rem;
+  border-left: 3px solid var(--primary-violet);
   padding-left: 1.25rem;
+  background: rgba(139, 92, 246, 0.05);
+  padding-top: 0.65rem;
+  padding-bottom: 0.65rem;
+  border-radius: 0 10px 10px 0;
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.04);
+  transition: var(--transition-smooth);
+}
+
+.about-card:hover .about-education-details {
+  background: rgba(139, 92, 246, 0.09);
+  border-left-color: var(--primary-cyan);
 }
 
 .edu-degree {
@@ -90,8 +123,9 @@
 
 .edu-institution {
   font-size: 0.95rem;
-  color: var(--text-secondary);
+  color: var(--primary-cyan);
   margin-top: 0.2rem;
+  font-weight: 500;
 }
 
 .edu-duration {
@@ -112,20 +146,26 @@
   align-items: flex-start;
   gap: 0.75rem;
   font-size: 0.95rem;
-  line-height: 1.5;
+  line-height: 1.55;
   color: var(--text-secondary);
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.about-bullet-item:hover {
+  transform: translateX(4px);
+  color: var(--text-primary);
 }
 
 .bullet-icon {
   color: var(--primary-cyan);
   margin-top: 3px;
   flex-shrink: 0;
+  transition: var(--transition-smooth);
 }
 
 .about-card:hover .bullet-icon {
   color: var(--primary-violet);
-  transform: scale(1.1);
-  transition: var(--transition-smooth);
+  transform: scale(1.18);
 }
 
 /* Responsive constraints */
@@ -143,3 +183,4 @@
     padding: 1.75rem;
   }
 }
+

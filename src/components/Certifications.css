@@ -16,17 +16,17 @@
   position: relative;
   overflow: hidden;
   transition: 
-    transform .35s cubic-bezier(.22,.61,.36,1),
-    box-shadow .35s,
-    background .35s,
-    border-color .35s;
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s,
+    background 0.35s,
+    border-color 0.35s;
   will-change: transform;
 }
 
 .cert-card:hover {
-  transform: translateY(-6px) scale(1.03);
-  border-color: rgba(139, 92, 246, 0.3);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(139, 92, 246, 0.15);
+  transform: translateY(-4px);
+  border-color: rgba(139, 92, 246, 0.35);
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.38), 0 0 28px rgba(139, 92, 246, 0.2);
 }
 
 /* Glass reflection sheen sweep on card hover */
@@ -37,7 +37,7 @@
   left: -150%;
   width: 120%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.09), transparent);
   transform: skewX(-20deg);
   transition: none;
   pointer-events: none;
@@ -62,18 +62,20 @@
   justify-content: center;
   width: 56px;
   height: 56px;
-  border-radius: 10px;
+  border-radius: 12px;
   background: rgba(139, 92, 246, 0.08);
-  border: 1px solid rgba(139, 92, 246, 0.2);
+  border: 1px solid rgba(139, 92, 246, 0.25);
   color: var(--primary-violet);
   transition: var(--transition-smooth);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
 }
 
 .cert-card:hover .cert-icon-wrapper {
-  background: rgba(6, 182, 212, 0.08);
-  border-color: rgba(6, 182, 212, 0.2);
+  background: rgba(6, 182, 212, 0.1);
+  border-color: rgba(6, 182, 212, 0.3);
   color: var(--primary-cyan);
-  transform: rotate(5deg) scale(1.05);
+  transform: rotate(6deg) scale(1.06);
+  box-shadow: 0 0 14px rgba(6, 182, 212, 0.2);
 }
 
 .cert-icon {
@@ -117,15 +119,16 @@
 .verify-badge {
   color: #10b981; /* Green color for validation badges */
   background: rgba(16, 185, 129, 0.08);
-  padding: 0.15rem 0.5rem;
-  border-radius: 4px;
-  border: 1px solid rgba(16, 185, 129, 0.2);
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
+  border: 1px solid rgba(16, 185, 129, 0.25);
   font-weight: 500;
+  font-family: var(--font-heading);
 }
 
 .cert-desc {
   font-size: 0.95rem;
-  line-height: 1.6;
+  line-height: 1.65;
   color: var(--text-secondary);
   margin-bottom: 1.75rem;
   flex-grow: 1;
@@ -137,17 +140,19 @@
 }
 
 .btn-cert-action {
-  padding: 0.4rem 1rem;
-  font-size: 0.8rem;
-  border-radius: 6px;
-  gap: 0.4rem;
-  transition: all 0.3s cubic-bezier(.22,.61,.36,1);
+  padding: 0.45rem 1.1rem;
+  font-size: 0.82rem;
+  border-radius: 8px;
+  gap: 0.45rem;
+  transition: all 0.3s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
 .cert-card:hover .btn-cert-action {
   border-color: var(--primary-violet);
-  background: rgba(139, 92, 246, 0.05);
+  background: rgba(139, 92, 246, 0.08);
+  color: #ffffff;
   transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.15);
 }
 
 @media (max-width: 992px) {
@@ -161,3 +166,4 @@
     padding: 1.75rem;
   }
 }
+

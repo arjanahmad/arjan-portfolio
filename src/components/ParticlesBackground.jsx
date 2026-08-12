@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { ParticlesProvider, Particles } from '@tsparticles/react';
 import { loadFull } from 'tsparticles';
 
@@ -26,7 +26,7 @@ const ParticlesBackground = () => {
     return () => observer.disconnect();
   }, []);
 
-  const options = {
+  const options = useMemo(() => ({
     fpsLimit: 60,
     fullScreen: {
       enable: true,
@@ -34,25 +34,25 @@ const ParticlesBackground = () => {
     },
     particles: {
       number: {
-        value: 80,
+        value: 90,
         density: {
           enable: true,
-          area: 800,
+          area: 850,
         },
       },
       color: {
-        // Dark-blue/cyan/purple premium theme harmony in dark mode, visible colors in light mode
+        // Dark-blue/cyan/purple theme harmony in dark mode, visible soft tones in light mode
         value: isLightMode 
           ? ['#0891b2', '#7c3aed', '#6366f1', '#0284c7', '#475569']
-          : ['#06b6d4', '#8b5cf6', '#a78bfa', '#38bdf8', '#ffffff'],
+          : ['#06b6d4', '#8b5cf6', '#a78bfa', '#38bdf8', '#818cf8', '#e2e8f0'],
       },
       shape: {
         type: 'circle',
       },
       opacity: {
         value: isLightMode 
-          ? { min: 0.15, max: 0.6 }
-          : { min: 0.1, max: 0.7 },
+          ? { min: 0.15, max: 0.5 }
+          : { min: 0.15, max: 0.8 },
         animation: {
           enable: true,
           speed: 0.5, // Soft, slow twinkling glow
@@ -60,18 +60,18 @@ const ParticlesBackground = () => {
         },
       },
       size: {
-        value: { min: 1, max: 3 }, // Small, elegant stars
+        value: { min: 0.6, max: 2.6 }, // Fine, crisp star points with depth
         animation: {
           enable: true,
-          speed: 1,
+          speed: 0.7,
           sync: false,
         },
       },
       links: {
         enable: true,
-        distance: 150, // Stars connect when nearby
-        color: isLightMode ? '#0891b2' : '#06b6d4', // Cyan constellation/network lines
-        opacity: isLightMode ? 0.12 : 0.15, // Thin and subtle
+        distance: 140, // Stars connect when nearby
+        color: isLightMode ? '#0891b2' : '#06b6d4', // Cyan constellation lines
+        opacity: isLightMode ? 0.08 : 0.14, // Thin, non-distracting lines
         width: 1,
         triangles: {
           enable: false,
@@ -79,7 +79,7 @@ const ParticlesBackground = () => {
       },
       move: {
         enable: true,
-        speed: 0.4, // Extremely slow, smooth moving stars
+        speed: 0.3, // Extremely smooth, slow floating movement
         direction: 'none',
         random: true, // Natural float
         straight: false,
@@ -89,14 +89,14 @@ const ParticlesBackground = () => {
       },
     },
     interactivity: {
-      detectsOn: 'window', // Detect cursor over standard sections
+      detectsOn: 'window',
       events: {
         onHover: {
           enable: true,
-          mode: 'grab', // Connect network to cursor on hover
+          mode: 'grab',
           parallax: {
-            enable: true, // Subtle depth scroll/mouse parallax
-            force: 60,
+            enable: true, // Gentle depth parallax
+            force: 35,
             smooth: 10,
           },
         },
@@ -106,18 +106,18 @@ const ParticlesBackground = () => {
       },
       modes: {
         grab: {
-          distance: 180,
+          distance: 155,
           links: {
-            opacity: isLightMode ? 0.28 : 0.35, // Clearer lines near cursor
+            opacity: isLightMode ? 0.18 : 0.25,
           },
         },
       },
     },
     detectRetina: true,
     background: {
-      color: 'transparent', // Transparent background overlay
+      color: 'transparent',
     },
-  };
+  }), [isLightMode]);
 
   return (
     <ParticlesProvider init={initParticles}>
@@ -127,4 +127,5 @@ const ParticlesBackground = () => {
 };
 
 export default ParticlesBackground;
+
 

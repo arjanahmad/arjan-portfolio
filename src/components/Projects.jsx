@@ -23,7 +23,7 @@ const Projects = () => {
       tech: ["HTML", "CSS", "JavaScript", "Framer Motion"],
       category: "Web",
       github: "https://github.com/arjanahmad/CODSOFT/tree/main/Landing-Page",
-      live: "https://all-gxmes.netlify.app/."
+      live: "https://all-gxmes.netlify.app/"
     },
     {
       id: 3,
