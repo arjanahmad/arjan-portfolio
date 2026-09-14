@@ -1,40 +1,35 @@
 import { motion } from 'framer-motion';
-import { GraduationCap, Target, Award, Heart, CheckCircle2 } from 'lucide-react';
+import { GraduationCap, Target, Shield, Heart, CheckCircle2 } from 'lucide-react';
 import './About.css';
 
 const About = () => {
   const cards = [
     {
       icon: <Target className="about-icon icon-cyan" size={24} />,
-      title: "Career Objective",
-      content: "BCA graduate seeking to leverage technical knowledge and developer skills in a Full Stack Developer role. Committed to building robust, accessible, and high-performance applications while staying updated with cybersecurity best practices and modern cloud architectures."
+      title: "Career Focus",
+      content: "BCA graduate dedicated to building modern full-stack web applications. Seeking an entry-level Full Stack Developer role to deliver responsive, maintainable frontend interfaces and reliable backend systems."
     },
     {
       icon: <GraduationCap className="about-icon icon-violet" size={24} />,
       title: "Education",
       institution: "Shri Ramswaroop Memorial University (SRMU)",
       degree: "Bachelor of Computer Applications (BCA)",
-      duration: "2023-2026 | Lucknow, India",
-      content: "Focused on core computer science concepts, database management, web design, and structured programming. Actively participated in technical societies and projects."
+      duration: "2023 - 2026 | Lucknow, India",
+      content: "Core fundamentals in Computer Science, Database Management Systems (DBMS), Web Development, and Object-Oriented Programming (Java / C++)."
     },
     {
-      icon: <Award className="about-icon icon-cyan" size={24} />,
-      title: "Strengths",
-      bullets: [
-        "Rapid technology adaptation & continuous self-learning.",
-        "Fast Learner with a Growth Mindset.",
-        "Effective Communication & Team Collaboration.",
-        "Creative Thinker with a User-First Approach."
-      ]
+      icon: <Shield className="about-icon icon-cyan" size={24} />,
+      title: "Security & Exploration",
+      content: "Actively deepening knowledge in cybersecurity fundamentals, Linux operating environments (Kali Linux), ethical hacking basics, and web application security standards."
     },
     {
-      icon: <Heart className="about-icon icon-violet" size={24} color="red" />,
-      title: "Interests",
+      icon: <Heart className="about-icon icon-violet" size={24} />,
+      title: "Key Strengths",
       bullets: [
-        "Web Development & Creating User-Friendly Digital Experiences.",
-        "Cybersecurity and Understanding How Systems Stay Secure.",
-        "Taking on New Challenges and Continuously Expanding My Skill Set.",
-        "AI-Powered Tools and the Future of Technology."
+        "Full-stack web application development with React & Web APIs.",
+        "Proactive self-learner adapt at picking up new frameworks fast.",
+        "Strong problem-solving foundation in Data Structures & OOP.",
+        "Collaborative mindset with clear technical communication."
       ]
     }
   ];
@@ -45,8 +40,8 @@ const About = () => {
       opacity: 1,
       y: 0,
       transition: {
-        delay: index * 0.15,
-        duration: 0.6,
+        delay: index * 0.12,
+        duration: 0.5,
         ease: "easeOut"
       }
     })
@@ -71,7 +66,7 @@ const About = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
-          An aspiring developer bridging design aesthetics with logical, secure engineering.
+          Aspiring full-stack software developer committed to clean code, responsive design, and continuous security learning.
         </motion.p>
       </div>
 
@@ -81,16 +76,14 @@ const About = () => {
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: 0.6 }}
         >
-          <h3 className="bio-title">Hello, I'm Arjan Ahmad</h3>
+          <h3 className="bio-title">Developer Mindset & Background</h3>
           <p className="bio-text">
-           Passionate about building modern web experiences that blend clean design with seamless functionality. I enjoy creating responsive, interactive, and user-centric applications using HTML, CSS, JavaScript, and React. Driven by curiosity and continuous learning, I focus on developing solutions that are fast, scalable, and impactful while constantly exploring new technologies and industry trends.
+            I am a <strong>Bachelor of Computer Applications (BCA)</strong> graduate from Shri Ramswaroop Memorial University with a passion for building user-centric web applications. My practical experience spans modern JavaScript, React.js, HTML/CSS, and backend concepts, enhanced through hands-on virtual internships at <strong>CodeAlpha</strong> and <strong>CodSoft</strong>.
           </p>
           <p className="bio-text">
-            Beyond regular coding, I'm deeply fascinated by IT infrastructures and cybersecurity, analyzing how protocols operate and 
-            engineering components with defense-in-depth in mind. I love to design responsive modules and build products that bring solutions 
-            to real-world user problems.
+            In addition to full-stack web development, I have a strong interest in <strong>cybersecurity and Linux administration</strong>. I regularly explore system architecture, ethical hacking fundamentals, and Kali Linux toolsets to build applications with security in mind from day one.
           </p>
         </motion.div>
       </div>

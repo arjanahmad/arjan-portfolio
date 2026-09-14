@@ -1,0 +1,239 @@
+.experience-section {
+  padding: 6rem 0;
+  position: relative;
+}
+
+.experience-timeline {
+  position: relative;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1rem 0;
+}
+
+.timeline-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 28px;
+  width: 2px;
+  background: linear-gradient(
+    180deg,
+    var(--primary-cyan) 0%,
+    var(--primary-violet) 50%,
+    rgba(139, 92, 246, 0.1) 100%
+  );
+  box-shadow: 0 0 12px var(--primary-cyan-glow);
+}
+
+.timeline-item {
+  position: relative;
+  padding-left: 70px;
+  margin-bottom: 3rem;
+}
+
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+.timeline-dot-wrapper {
+  position: absolute;
+  left: 12px;
+  top: 24px;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+.timeline-dot {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--bg-darker);
+  border: 2px solid var(--primary-cyan);
+  color: var(--primary-cyan);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 16px var(--primary-cyan-glow);
+  transition: var(--transition-smooth);
+}
+
+.timeline-item:hover .timeline-dot {
+  background: var(--primary-cyan);
+  color: #030712;
+  border-color: #ffffff;
+  transform: scale(1.15);
+  box-shadow: 0 0 24px var(--primary-cyan-glow);
+}
+
+.experience-card {
+  padding: 2.25rem;
+  border-radius: 18px;
+  position: relative;
+}
+
+.exp-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.exp-company {
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--primary-cyan);
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.exp-role {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.25;
+}
+
+.exp-program {
+  font-size: 0.925rem;
+  color: var(--text-muted);
+  display: block;
+  margin-top: 0.2rem;
+}
+
+.exp-badge-container {
+  flex-shrink: 0;
+}
+
+.exp-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  background: rgba(6, 182, 212, 0.1);
+  color: var(--primary-cyan);
+  border: 1px solid rgba(6, 182, 212, 0.25);
+  box-shadow: 0 2px 10px rgba(6, 182, 212, 0.1);
+}
+
+.exp-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.exp-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.exp-meta-item.student-id {
+  color: var(--primary-violet);
+  font-weight: 600;
+}
+
+.exp-desc {
+  font-size: 0.975rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  margin-bottom: 1.25rem;
+}
+
+.exp-highlights {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  margin-bottom: 1.5rem;
+}
+
+.exp-highlight-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  font-size: 0.925rem;
+  color: var(--text-secondary);
+}
+
+.exp-highlight-item .highlight-icon {
+  color: var(--primary-cyan);
+  flex-shrink: 0;
+  margin-top: 0.2rem;
+}
+
+.exp-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border-glass);
+}
+
+.exp-tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tech-tag {
+  padding: 0.25rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-glass);
+  transition: var(--transition-smooth);
+}
+
+.tech-tag:hover {
+  background: rgba(6, 182, 212, 0.15);
+  color: var(--primary-cyan);
+  border-color: rgba(6, 182, 212, 0.3);
+}
+
+.exp-verify-link {
+  padding: 0.4rem 0.9rem;
+  font-size: 0.825rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .timeline-line {
+    left: 18px;
+  }
+  .timeline-item {
+    padding-left: 48px;
+  }
+  .timeline-dot-wrapper {
+    left: 18px;
+  }
+  .timeline-dot {
+    width: 28px;
+    height: 28px;
+  }
+  .timeline-dot svg {
+    width: 14px;
+    height: 14px;
+  }
+  .experience-card {
+    padding: 1.5rem;
+  }
+  .exp-card-header {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .exp-role {
+    font-size: 1.2rem;
+  }
+}

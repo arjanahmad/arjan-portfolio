@@ -1,12 +1,17 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, ArrowRight, Download } from 'lucide-react';
+import { Mail, ArrowRight, Download, Terminal, Sparkles } from 'lucide-react';
 import { FiGithub, FiLinkedin } from 'react-icons/fi';
 import devAvatar from '../assets/dev_avatar.png';
-import devAvatar2 from '../assets/dev_avatar_2.png';
+import devAvatar2 from '../assets/dev_avatar_2.jpg';
 import './Hero.css'; 
 
-const roles = ["Web Developer", "React Developer", "Problem Solver", "Tech Enthusiast"];
+const roles = [
+  "Full Stack Developer",
+  "BCA Graduate",
+  "React.js Specialist",
+  "Security Enthusiast"
+];
 
 const Hero = () => {
   const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
@@ -18,29 +23,29 @@ const Hero = () => {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
-  // Alternating images timer (every 3 seconds)
+  // Alternating images timer (every 3.5 seconds)
   useEffect(() => {
     const imageTimer = setInterval(() => {
       setActiveImageIndex((prev) => (prev === 0 ? 1 : 0));
-    }, 3000);
+    }, 3500);
     return () => clearInterval(imageTimer);
   }, []);
 
-  // Mouse Parallax Effect (subtle 5-8px parallax)
+  // Mouse Parallax Effect (subtle parallax)
   useEffect(() => {
     const handleMouseMove = (e) => {
       const { clientX, clientY } = e;
       const { innerWidth, innerHeight } = window;
       const x = (clientX - innerWidth / 2) / (innerWidth / 2);
       const y = (clientY - innerHeight / 2) / (innerHeight / 2);
-      setMousePos({ x: x * 6, y: y * 6 }); // 6px maximum movement
+      setMousePos({ x: x * 6, y: y * 6 });
     };
 
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  // Smooth Typing & Fade Transition
+  // Typing & Fade Transition
   useEffect(() => {
     let timer;
     const fullText = roles[currentRoleIndex];
@@ -49,7 +54,7 @@ const Hero = () => {
       if (currentText.length < fullText.length) {
         timer = setTimeout(() => {
           setCurrentText(fullText.substring(0, currentText.length + 1));
-        }, 80);
+        }, 75);
       } else {
         setIsTypingComplete(true);
         timer = setTimeout(() => {
@@ -66,7 +71,7 @@ const Hero = () => {
         setTextOpacity(1);
         setTextY(5);
         setTimeout(() => setTextY(0), 50);
-      }, 400);
+      }, 350);
     }
 
     return () => clearTimeout(timer);
@@ -75,7 +80,14 @@ const Hero = () => {
   const handleScrollTo = (id) => {
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      const navbarHeight = 80;
+      const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+      const offsetPosition = elementPosition - navbarHeight;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
     }
   };
 
@@ -94,7 +106,8 @@ const Hero = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2, duration: 0.5 }}
           >
-            BCA Graduate | Aspiring Full Stack Developer
+            <Sparkles size={14} className="hero-badge-icon" />
+            <span>BCA Graduate | Aspiring Full Stack Developer</span>
           </motion.div>
           
           <motion.h1 
@@ -112,9 +125,10 @@ const Hero = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4, duration: 0.5 }}
           >
-            A passionate{' '}
+            <Terminal size={20} className="inline-terminal-icon" />
+            <span className="typing-prefix">Specializing in</span>{' '}
             <span 
-              className="typed-text"
+              className="typed-text text-gradient-cyan"
               style={{
                 opacity: textOpacity,
                 transform: `translateY(${textY}px)`,
@@ -133,7 +147,7 @@ const Hero = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5, duration: 0.5 }}
           >
-            Turning ideas into functional web experiences through clean code, modern technologies, and continuous learning. Focused on building responsive applications, solving real-world problems, and growing as a developer every day.
+            Building responsive, user-focused web applications with clean code, scalable architecture, and modern frameworks. BCA graduate with hands-on full-stack internship experience and an active interest in cybersecurity.
           </motion.p>
 
           <motion.div 
@@ -143,7 +157,7 @@ const Hero = () => {
             transition={{ delay: 0.55, duration: 0.5 }}
           >
             <span className="status-badge-dot"></span>
-            <span className="status-badge-text">Available for Full Stack Developer Opportunities</span>
+            <span className="status-badge-text">Available for Full Stack Developer Roles</span>
           </motion.div>
 
           <motion.div 
@@ -172,8 +186,8 @@ const Hero = () => {
             <button className="btn btn-primary" onClick={() => handleScrollTo('projects')}>
               View Projects <ArrowRight size={16} />
             </button>
-            <a href="/resume.pdf" download className="btn btn-outline">
-              Download Resume <Download size={16} />
+            <a href="/resume.pdf" target="_blank" rel="noreferrer" className="btn btn-outline">
+              Resume <Download size={16} />
             </a>
             <button className="btn btn-outline" onClick={() => handleScrollTo('contact')}>
               Contact Me
@@ -191,16 +205,13 @@ const Hero = () => {
             className="profile-img-parallax-container"
             style={{ 
               transform: `translate(${mousePos.x}px, ${mousePos.y}px)`,
-              transition: 'transform 0.2s ease-out',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center'
+              transition: 'transform 0.2s ease-out'
             }}
           >
             <div className="profile-img-wrapper float-breathe-glow">
               <img 
                 src={devAvatar} 
-                alt="Arjan Ahmad Avatar 1" 
+                alt="Arjan Ahmad Developer Avatar 1" 
                 className="profile-avatar" 
                 style={{
                   opacity: activeImageIndex === 0 ? 1 : 0,
@@ -210,7 +221,7 @@ const Hero = () => {
               />
               <img 
                 src={devAvatar2} 
-                alt="Arjan Ahmad Avatar 2" 
+                alt="Arjan Ahmad Developer Avatar 2" 
                 className="profile-avatar" 
                 style={{
                   opacity: activeImageIndex === 1 ? 1 : 0,

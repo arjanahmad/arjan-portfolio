@@ -6,9 +6,11 @@ import './Navbar.css';
 const navLinks = [
   { name: 'Home', targetId: 'home' },
   { name: 'About', targetId: 'about' },
+  { name: 'Experience', targetId: 'experience' },
   { name: 'Skills', targetId: 'skills' },
   { name: 'Projects', targetId: 'projects' },
   { name: 'Certifications', targetId: 'certifications' },
+  { name: 'Exploring', targetId: 'exploring' },
   { name: 'Contact', targetId: 'contact' }
 ];
 

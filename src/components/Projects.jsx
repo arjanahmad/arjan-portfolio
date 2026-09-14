@@ -9,34 +9,51 @@ const Projects = () => {
   const projectsData = [
     {
       id: 1,
-      title: "Portfolio Website",
-      description: "A premium, modern, and fully responsive developer portfolio built with React, Vite, and Framer Motion. Features customizable details, dark navy themes, and seamless section scrolling.",
-      tech: ["React.js", "Vite", "Framer Motion", "CSS"],
-      category: "Web",
+      title: "DropShxre — Real-Time File Sharing Web App",
+      isFeatured: true,
+      badgeText: "Featured Live Deployed App",
+      description: "A modern, high-speed file sharing and transfer platform enabling instant, frictionless file distribution. Built with a focus on real-time usability, clean user experience, and responsive layout performance across desktop and mobile devices.",
+      tech: ["React.js", "Web APIs", "JavaScript (ES6+)", "CSS3 / Glassmorphic UI"],
+      category: "Featured Apps",
+      github: null, // No fake GitHub repo for DropShxre, direct live demo link
+      live: "https://dropshxre.netlify.app/"
+    },
+    {
+      id: 2,
+      title: "Developer Portfolio Portal",
+      isFeatured: false,
+      badgeText: "Personal Portfolio",
+      description: "A premium, recruiter-friendly developer portfolio built with React, Vite, and Framer Motion. Features dark slate glassmorphism, responsive navigation, career timeline, and verified credential presentation.",
+      tech: ["React.js", "Vite", "Framer Motion", "CSS Variables"],
+      category: "Web Applications",
       github: "https://github.com/arjanahmad/CODSOFT/tree/main/Portfolio",
       live: "https://arjan-personal-portfolio.netlify.app/"
     },
     {
-      id: 2,
-      title: "Gaming Landing Page",
-      description: "A visually immersive, high-impact gaming landing page featuring game libraries, hover states, and fully responsive grid components styled for gamers.",
-      tech: ["HTML", "CSS", "JavaScript", "Framer Motion"],
-      category: "Web",
+      id: 3,
+      title: "Gaming Portal & Landing Page",
+      isFeatured: false,
+      badgeText: "Interactive UI",
+      description: "A visually immersive gaming landing page showcasing title libraries, interactive hover states, dynamic accent themes, and responsive grid components engineered for modern web users.",
+      tech: ["HTML5", "CSS3", "JavaScript", "Framer Motion"],
+      category: "Web Applications",
       github: "https://github.com/arjanahmad/CODSOFT/tree/main/Landing-Page",
       live: "https://all-gxmes.netlify.app/"
     },
     {
-      id: 3,
-      title: "Calculator App",
-      description: "A clean math utility app with expression parsing, custom UI modes, responsive grid buttons, and detailed operation tracking history logs.",
-      tech: ["React.js", "CSS"],
-      category: "Utility",
+      id: 4,
+      title: "Interactive Calculator Application",
+      isFeatured: false,
+      badgeText: "Utility Tool",
+      description: "A clean mathematical utility web application featuring expression evaluation, operation history logging, custom color themes, and intuitive grid button layouts.",
+      tech: ["React.js", "JavaScript", "CSS Grid"],
+      category: "Utilities",
       github: "https://github.com/arjanahmad/CODSOFT/tree/main/Calculator",
       live: "https://cxlculxtor.netlify.app/"
     }
   ];
 
-  const categories = ["All", "Web", "Utility"];
+  const categories = ["All", "Featured Apps", "Web Applications", "Utilities"];
 
   const filteredProjects = activeFilter === 'All'
     ? projectsData
@@ -52,7 +69,7 @@ const Projects = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          My Featured <span className="text-gradient">Projects</span>
+          Featured <span className="text-gradient">Projects</span>
         </motion.h2>
         <motion.p 
           className="section-subtitle"
@@ -61,7 +78,7 @@ const Projects = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
-          A selection of web development projects representing full-stack flows, user experiences, and responsive systems.
+          Deployed web applications showcasing real-time file sharing, responsive interfaces, and clean full-stack logic.
         </motion.p>
       </div>
 
@@ -86,10 +103,11 @@ const Projects = () => {
             <motion.div
               layout
               key={project.id}
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
+              exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.4 }}
+              className={project.isFeatured ? "featured-project-wrapper" : ""}
             >
               <ProjectCard project={project} index={index} />
             </motion.div>

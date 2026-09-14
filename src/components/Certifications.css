@@ -105,7 +105,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
-  margin-bottom: 1.25rem;
+  margin-bottom: 0.75rem;
   font-size: 0.85rem;
   color: var(--text-muted);
 }
@@ -124,6 +124,21 @@
   border: 1px solid rgba(16, 185, 129, 0.25);
   font-weight: 500;
   font-family: var(--font-heading);
+}
+
+.cert-id-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--primary-violet);
+  background: rgba(139, 92, 246, 0.08);
+  padding: 0.25rem 0.65rem;
+  border-radius: 6px;
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  margin-bottom: 1.25rem;
+  width: fit-content;
 }
 
 .cert-desc {

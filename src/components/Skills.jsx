@@ -1,14 +1,14 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Code2, Terminal, Database, Wrench, Layers } from 'lucide-react';
+import { Code2, Terminal, Database, Wrench, Cpu } from 'lucide-react';
 import './Skills.css';
 
 const categoryIcons = {
-  Frontend: <Code2 size={22} className="category-icon" />,
-  Programming: <Terminal size={22} className="category-icon" />,
-  Database: <Database size={22} className="category-icon" />,
-  Tools: <Wrench size={22} className="category-icon" />,
-  Other: <Layers size={22} className="category-icon" />,
+  "Frontend Web": <Code2 size={22} className="category-icon" />,
+  "Programming & Logic": <Terminal size={22} className="category-icon" />,
+  "Database & Querying": <Database size={22} className="category-icon" />,
+  "Development Tools": <Wrench size={22} className="category-icon" />,
+  "Core Competencies": <Cpu size={22} className="category-icon" />,
 };
 
 const Counter = ({ value }) => {
@@ -34,20 +34,18 @@ const Counter = ({ value }) => {
 
   useEffect(() => {
     if (!started) return;
-    let start = 0;
-    const end = value;
-    const duration = 1200; // 1.2 seconds
     let startTime = null;
+    const duration = 1000;
 
     const animate = (timestamp) => {
       if (!startTime) startTime = timestamp;
       const progress = timestamp - startTime;
-      const current = Math.min(Math.floor((progress / duration) * end), end);
+      const current = Math.min(Math.floor((progress / duration) * value), value);
       setCount(current);
       if (progress < duration) {
         requestAnimationFrame(animate);
       } else {
-        setCount(end);
+        setCount(value);
       }
     };
     requestAnimationFrame(animate);
@@ -58,31 +56,30 @@ const Counter = ({ value }) => {
 
 const Skills = () => {
   const skillsData = {
-    Frontend: [
-      { name: "HTML", level: 80 },
-      { name: "CSS", level: 60 },
-      { name: "JavaScript", level: 55 },
-      { name: "React.js", level: 50 }
+    "Frontend Web": [
+      { name: "HTML5 / CSS3", level: 85 },
+      { name: "JavaScript (ES6+)", level: 80 },
+      { name: "React.js", level: 75 },
+      { name: "Responsive UI & Flex/Grid", level: 90 }
     ],
-    Programming: [
-      { name: "Core Java", level: 65 },
-      { name: "C++", level: 50 },
-      { name: "C", level: 45 } 
+    "Programming & Logic": [
+      { name: "Core Java", level: 75 },
+      { name: "C++ Programming", level: 70 },
+      { name: "C Language Fundamentals", level: 65 } 
     ],
-    Database: [
-      { name: "MySQL", level: 70 }
+    "Database & Querying": [
+      { name: "MySQL / Relational DBs", level: 75 }
     ],
-    Tools: [
-      { name: "Git", level: 80 },
-      { name: "GitHub", level: 85 },
-      { name: "VS Code", level: 90 },
-      { name: "IntelliJ IDEA", level: 80 },
+    "Development Tools": [
+      { name: "Git & GitHub Version Control", level: 85 },
+      { name: "VS Code & IntelliJ IDEA", level: 90 },
+      { name: "Netlify & Web Deployment", level: 85 }
     ],
-    Other: [
-      { name: "Problem Solving", level: 85 },
-      { name: "Responsive Design", level: 90 },
-      { name: "Communication", level: 75 },
-      { name: "Team Collaboration", level: 80 }
+    "Core Competencies": [
+      { name: "Data Structures Basics", level: 75 },
+      { name: "Object-Oriented Programming (OOP)", level: 80 },
+      { name: "Problem Solving & Analytical Thinking", level: 85 },
+      { name: "Technical Communication", level: 80 }
     ]
   };
 
@@ -115,7 +112,7 @@ const Skills = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          My <span className="text-gradient">Skills</span>
+          Technical <span className="text-gradient">Skills</span>
         </motion.h2>
         <motion.p 
           className="section-subtitle"
@@ -124,7 +121,7 @@ const Skills = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
-          A representation of my technical capabilities and proficiency across various domains.
+          Structured domain proficiency built through BCA coursework, self-learning, and practical internships.
         </motion.p>
       </div>
 
@@ -161,7 +158,7 @@ const Skills = () => {
                       whileInView={{ scaleX: skill.level / 100 }}
                       viewport={{ once: true }}
                       style={{ transformOrigin: 'left' }}
-                      transition={{ duration: 1.2, delay: 0.2, ease: "easeOut" }}
+                      transition={{ duration: 1.1, delay: 0.15, ease: "easeOut" }}
                     />
                   </div>
                 </div>
