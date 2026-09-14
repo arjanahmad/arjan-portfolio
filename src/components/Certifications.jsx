@@ -12,7 +12,7 @@ const Certifications = () => {
       issueDate: "11 July 2026",
       certId: "Student ID: CA/DF1/132132",
       description: "Certificate of Completion awarded for active participation and work in the CodeAlpha Virtual Internship Program in Full Stack Development.",
-      verifyUrl: "https://drive.google.com/file/d/164MRX91FBB9OZTwzdnzxQPDcnSlGNfvh/view?usp=drive_link"
+      verifyUrl: "https://drive.google.com/file/d/14iVg6byzUjMURBxQDYN_vAHxgOlrcoip/view?usp=sharing"
     },
     {
       id: 2,
@@ -21,7 +21,7 @@ const Certifications = () => {
       date: "19th August 2026",
       certId: "NO: fa4e7b83-4d50-4632-af87-8ec757ebcbef",
       description: "Successfully completed the Ethical Hacking Bootcamp Program covering security concepts, network vulnerabilities, and defensive protocols.",
-      verifyUrl: "https://drive.google.com/file/d/1801Vp51hxu33gSdfYCm7K7pFTfc4IVMb/view?usp=drive_link"
+      verifyUrl: "https://drive.google.com/file/d/1Ta9IYNJsUhZHY_KRw5364e1f0dlvlBvi/view?usp=sharing"
     },
     {
       id: 3,
@@ -30,7 +30,7 @@ const Certifications = () => {
       date: "01st August 2026",
       certId: "Buildathon AI Participation",
       description: "Recognized for effort and enthusiasm toward learning AI during the Tech4Hack Buildathon hosted at Thoughtworks Technology.",
-      verifyUrl: "https://drive.google.com/file/d/1801Vp51hxu33gSdfYCm7K7pFTfc4IVMb/view?usp=drive_link"
+      verifyUrl: "https://drive.google.com/file/d/1-zN7NewF1PLgrSAstwLuZlhf4XmAtP2A/view?usp=sharing"
     },
     {
       id: 4,

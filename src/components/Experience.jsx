@@ -20,7 +20,7 @@ const experiences = [
       "Awarded Official Certificate of Completion (Student ID: CA/DF1/132132)."
     ],
     techTags: ["Full Stack", "React.js", "JavaScript", "HTML5/CSS3", "Git"],
-    verifyUrl: "https://drive.google.com/file/d/164MRX91FBB9OZTwzdnzxQPDcnSlGNfvh/view?usp=drive_link"
+    verifyUrl: "https://drive.google.com/file/d/14iVg6byzUjMURBxQDYN_vAHxgOlrcoip/view?usp=sharing"
   },
   {
     id: 2,
