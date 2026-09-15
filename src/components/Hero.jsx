@@ -9,8 +9,9 @@ import './Hero.css';
 const roles = [
   "Full Stack Developer",
   "BCA Graduate",
-  "React.js Specialist",
-  "Security Enthusiast"
+  "Aspiring Developer",
+  "Security Enthusiast",
+  "New Technologies Explorer",
 ];
 
 const Hero = () => {
