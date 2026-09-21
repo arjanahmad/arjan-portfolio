@@ -1,186 +1,276 @@
+/* About Section Styles */
 .about-section {
-  padding-top: 6rem;
-  padding-bottom: 6rem;
-}
-
-.about-intro-grid {
-  margin-bottom: 2.5rem;
-}
-
-.about-bio {
-  padding: 2.5rem;
+  padding: 6.5rem 0;
   position: relative;
-  overflow: hidden;
 }
 
-.about-bio::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, var(--primary-cyan), var(--primary-violet));
-  opacity: 0.6;
+/* Story Card */
+.about-hero-story {
+  padding: 2.75rem 2.5rem;
+  margin-bottom: 2.5rem;
+  border-radius: var(--radius-xl);
 }
 
-.bio-title {
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin-bottom: 1.25rem;
+.story-heading {
+  font-size: clamp(1.35rem, 2.2vw, 1.85rem);
+  font-weight: 800;
   color: var(--text-primary);
+  line-height: 1.35;
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.02em;
 }
 
-.bio-text {
+.story-paragraph {
   font-size: 1.05rem;
-  line-height: 1.75;
   color: var(--text-secondary);
-  margin-bottom: 1rem;
+  line-height: 1.75;
+  margin-bottom: 1.15rem;
 }
 
-.bio-text:last-child {
-  margin-bottom: 0;
+.story-paragraph strong {
+  color: var(--text-primary);
+  font-weight: 600;
 }
 
-/* About Cards Grid */
+.story-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 1.75rem;
+}
+
+/* 4 Highlight Cards Grid */
 .about-cards-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
+  gap: 1.75rem;
+  margin-bottom: 2.5rem;
 }
 
-.about-card {
-  padding: 2.5rem;
+.about-highlight-card {
+  padding: 2rem;
+  border-radius: var(--radius-lg);
   display: flex;
   flex-direction: column;
-  height: 100%;
-  position: relative;
-  overflow: hidden;
 }
 
-.about-card-header {
+.card-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+}
+
+.card-icon-container {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-glass);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body.light-mode .card-icon-container {
+  background: #f1f5f9;
+  border-color: #e2e8f0;
+}
+
+.text-cyan {
+  color: var(--primary-cyan);
+}
+
+.text-violet {
+  color: var(--primary-violet);
+}
+
+.card-period-tag {
+  font-size: 0.76rem;
+  font-weight: 600;
+  font-family: var(--font-heading);
+  color: var(--text-muted);
+  padding: 0.25rem 0.65rem;
+  background: var(--bg-subtle);
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-glass);
+}
+
+body.light-mode .card-period-tag {
+  background: #f8fafc;
+  border-color: #e2e8f0;
+}
+
+.card-main-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.45rem;
+}
+
+.card-sub-info {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.95rem;
+}
+
+.card-sub-info strong {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--primary-cyan);
+  font-family: var(--font-heading);
+}
+
+.card-sub-info span {
+  font-size: 0.84rem;
+  color: var(--text-muted);
+}
+
+.card-detail-text {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-top: auto;
+}
+
+/* Education Timeline Card */
+.about-education-container {
+  padding: 2.5rem;
+  border-radius: var(--radius-xl);
+}
+
+.education-header {
   display: flex;
   align-items: center;
   gap: 1rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2.25rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-glass);
 }
 
-.about-icon {
-  flex-shrink: 0;
-  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.about-card:hover .about-icon {
-  transform: scale(1.12) rotate(4deg);
-}
-
-.icon-cyan {
+.education-icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: var(--accent-soft-bg);
   color: var(--primary-cyan);
-  filter: drop-shadow(0 0 8px rgba(6, 182, 212, 0.3));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-glass);
 }
 
-.icon-violet {
-  color: var(--primary-violet);
-  filter: drop-shadow(0 0 8px rgba(139, 92, 246, 0.3));
-}
-
-.about-card-title {
+.education-heading {
   font-size: 1.35rem;
-  font-weight: 700;
-}
-
-.about-card-desc {
-  font-size: 1rem;
-  line-height: 1.7;
-  color: var(--text-secondary);
-}
-
-/* Education Box details */
-.about-education-details {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 1.25rem;
-  border-left: 3px solid var(--primary-violet);
-  padding-left: 1.25rem;
-  background: rgba(139, 92, 246, 0.05);
-  padding-top: 0.65rem;
-  padding-bottom: 0.65rem;
-  border-radius: 0 10px 10px 0;
-  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.04);
-  transition: var(--transition-smooth);
-}
-
-.about-card:hover .about-education-details {
-  background: rgba(139, 92, 246, 0.09);
-  border-left-color: var(--primary-cyan);
-}
-
-.edu-degree {
-  font-size: 1.05rem;
-  font-weight: 600;
+  font-weight: 800;
   color: var(--text-primary);
 }
 
-.edu-institution {
-  font-size: 0.95rem;
-  color: var(--primary-cyan);
-  margin-top: 0.2rem;
-  font-weight: 500;
-}
-
-.edu-duration {
-  font-size: 0.85rem;
+.education-subheading {
+  font-size: 0.9rem;
   color: var(--text-muted);
-  margin-top: 0.2rem;
 }
 
-/* Bullet list stylings */
-.about-bullets {
+.education-items-list {
   display: flex;
   flex-direction: column;
-  gap: 0.85rem;
 }
 
-.about-bullet-item {
+.education-timeline-item {
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  gap: 1.25rem;
+  position: relative;
+}
+
+.timeline-marker {
   display: flex;
-  align-items: flex-start;
-  gap: 0.75rem;
-  font-size: 0.95rem;
-  line-height: 1.55;
-  color: var(--text-secondary);
-  transition: transform 0.3s ease, color 0.3s ease;
+  flex-direction: column;
+  align-items: center;
 }
 
-.about-bullet-item:hover {
-  transform: translateX(4px);
+.marker-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--primary-cyan);
+  box-shadow: 0 0 10px var(--primary-cyan-glow);
+  margin-top: 5px;
+  flex-shrink: 0;
+}
+
+.marker-line {
+  width: 2px;
+  flex-grow: 1;
+  background: var(--border-glass-bright);
+  margin: 6px 0;
+}
+
+body.light-mode .marker-line {
+  background: #cbd5e1;
+}
+
+.timeline-item-body {
+  padding-bottom: 2rem;
+}
+
+.timeline-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.35rem;
+}
+
+.timeline-degree {
+  font-size: 1.1rem;
+  font-weight: 700;
   color: var(--text-primary);
 }
 
-.bullet-icon {
+.timeline-year {
+  font-size: 0.8rem;
+  font-weight: 700;
+  font-family: var(--font-heading);
   color: var(--primary-cyan);
-  margin-top: 3px;
-  flex-shrink: 0;
-  transition: var(--transition-smooth);
+  padding: 0.2rem 0.65rem;
+  background: var(--accent-soft-bg);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-pill);
 }
 
-.about-card:hover .bullet-icon {
-  color: var(--primary-violet);
-  transform: scale(1.18);
+.timeline-institution {
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
 }
 
-/* Responsive constraints */
-@media (max-width: 992px) {
+.timeline-location {
+  color: var(--text-muted);
+}
+
+.timeline-details {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
   .about-cards-grid {
     grid-template-columns: 1fr;
   }
-}
-
-@media (max-width: 768px) {
-  .about-bio {
-    padding: 1.75rem;
-  }
-  .about-card {
-    padding: 1.75rem;
+  .about-hero-story,
+  .about-education-container {
+    padding: 2rem 1.5rem;
   }
 }
 
+@media (max-width: 600px) {
+  .timeline-title-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+  }
+}

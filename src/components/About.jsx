@@ -1,131 +1,169 @@
 import { motion } from 'framer-motion';
-import { GraduationCap, Target, Shield, Heart, CheckCircle2 } from 'lucide-react';
+import { GraduationCap, Target, ShieldCheck, Cpu, Code2, Award, ArrowUpRight } from 'lucide-react';
 import './About.css';
 
 const About = () => {
-  const cards = [
+  const highlightCards = [
     {
-      icon: <Target className="about-icon icon-cyan" size={24} />,
-      title: "Career Focus",
-      content: "BCA graduate dedicated to building modern full-stack web applications. Seeking an entry-level Full Stack Developer role to deliver responsive, maintainable frontend interfaces and reliable backend systems."
-    },
-    {
-      icon: <GraduationCap className="about-icon icon-violet" size={24} />,
-      title: "Education",
+      icon: <GraduationCap className="card-icon text-cyan" size={22} />,
+      title: "Academic Foundation",
+      subtitle: "Bachelor of Computer Applications (BCA)",
       institution: "Shri Ramswaroop Memorial University (SRMU)",
-      degree: "Bachelor of Computer Applications (BCA)",
-      duration: "2023 - 2026 | Lucknow, India",
-      content: "Core fundamentals in Computer Science, Database Management Systems (DBMS), Web Development, and Object-Oriented Programming (Java / C++)."
+      period: "Expected June 2026 | Lucknow, UP",
+      description: "Structured computer science foundation in Object-Oriented Programming (Core Java), Data Structures & Algorithms, DBMS, and Web Architecture."
     },
     {
-      icon: <Shield className="about-icon icon-cyan" size={24} />,
+      icon: <Code2 className="card-icon text-violet" size={22} />,
+      title: "Frontend Engineering",
+      subtitle: "Responsive UI & Performance",
+      institution: "Hands-on Project & Internship Work",
+      period: "2024 – Present",
+      description: "Specialized in creating responsive, accessible, cross-browser web applications with modern HTML5, CSS3, JavaScript (ES6+), and React.js."
+    },
+    {
+      icon: <Target className="card-icon text-cyan" size={22} />,
+      title: "Practical Execution",
+      subtitle: "2x Verified Remote Internships",
+      institution: "CodeAlpha & CodSoft",
+      period: "Jun 2026 – Jul 2026 & May 2026",
+      description: "Delivered production-ready modules, user interfaces, real-time file sharing logic, and utility tools under structured remote programs."
+    },
+    {
+      icon: <ShieldCheck className="card-icon text-violet" size={22} />,
       title: "Security & Exploration",
-      content: "Actively deepening knowledge in cybersecurity fundamentals, Linux operating environments (Kali Linux), ethical hacking basics, and web application security standards."
-    },
-    {
-      icon: <Heart className="about-icon icon-violet" size={24} />,
-      title: "Key Strengths",
-      bullets: [
-        "Full-stack web application development with React & Web APIs.",
-        "Proactive self-learner adapt at picking up new frameworks fast.",
-        "Strong problem-solving foundation in Data Structures & OOP.",
-        "Collaborative mindset with clear technical communication."
-      ]
+      subtitle: "Cybersecurity Fundamentals",
+      institution: "SRMU VIVEKA & Physics Wallah",
+      period: "Continuous Learning",
+      description: "Active self-directed focus on web application security, input validation, Kali Linux environment navigation, and OWASP safety standards."
     }
   ];
 
-  const cardVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: (index) => ({
-      opacity: 1,
-      y: 0,
-      transition: {
-        delay: index * 0.12,
-        duration: 0.5,
-        ease: "easeOut"
-      }
-    })
-  };
+  const educationTimeline = [
+    {
+      degree: "Bachelor of Computer Applications (BCA)",
+      institution: "Shri Ramswaroop Memorial University",
+      location: "Lucknow, Uttar Pradesh",
+      year: "Expected June 2026",
+      details: "Focus on Web Development, Core Java, Relational Databases, and Software Engineering principles."
+    },
+    {
+      degree: "Intermediate (12th Standard)",
+      institution: "A H Inter College",
+      location: "Amethi, Uttar Pradesh",
+      year: "2023",
+      details: "Completed higher secondary education with strong analytical and scientific reasoning foundation."
+    },
+    {
+      degree: "High School (10th Standard)",
+      institution: "Brightway Public School",
+      location: "Sultanpur, Uttar Pradesh",
+      year: "2021",
+      details: "Solid academic foundation and initial introduction to computer science and logical thinking."
+    }
+  ];
 
   return (
-    <section id="about" className="about-section container section-reveal">
-      <div className="section-header">
-        <motion.h2 
-          className="section-title"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          About <span className="text-gradient">Me</span>
-        </motion.h2>
-        <motion.p 
-          className="section-subtitle"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-        >
-          Aspiring full-stack software developer committed to clean code, responsive design, and continuous security learning.
-        </motion.p>
-      </div>
-
-      <div className="about-intro-grid">
-        <motion.div 
-          className="about-bio glass-card"
-          initial={{ opacity: 0, x: -30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <h3 className="bio-title">Developer Mindset & Background</h3>
-          <p className="bio-text">
-            I am a <strong>Bachelor of Computer Applications (BCA)</strong> graduate from Shri Ramswaroop Memorial University with a passion for building user-centric web applications. My practical experience spans modern JavaScript, React.js, HTML/CSS, and backend concepts, enhanced through hands-on virtual internships at <strong>CodeAlpha</strong> and <strong>CodSoft</strong>.
+    <section id="about" className="about-section section-reveal">
+      <div className="container">
+        {/* Section Header */}
+        <div className="section-header">
+          <div className="section-pill-badge">
+            <span className="badge-dot"></span>
+            <span>Professional Background</span>
+          </div>
+          <h2 className="section-title">
+            About <span className="text-gradient">Arjan Ahmad</span>
+          </h2>
+          <p className="section-subtitle">
+            Frontend developer and BCA candidate driven by clean code, intuitive user experiences, and systematic problem solving.
           </p>
-          <p className="bio-text">
-            In addition to full-stack web development, I have a strong interest in <strong>cybersecurity and Linux administration</strong>. I regularly explore system architecture, ethical hacking fundamentals, and Kali Linux toolsets to build applications with security in mind from day one.
-          </p>
-        </motion.div>
-      </div>
+        </div>
 
-      <div className="about-cards-grid">
-        {cards.map((card, idx) => (
-          <motion.div
-            key={idx}
-            className="about-card glass-card"
-            variants={cardVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            custom={idx}
-          >
-            <div className="about-card-header">
-              {card.icon}
-              <h3 className="about-card-title">{card.title}</h3>
+        {/* Story Intro Card */}
+        <div className="about-hero-story glass-card">
+          <div className="story-content">
+            <h3 className="story-heading">
+              Building modern web solutions with precision, usability, and speed.
+            </h3>
+            <p className="story-paragraph">
+              I am a final-year <strong>BCA student at Shri Ramswaroop Memorial University</strong> based in Lucknow, Uttar Pradesh. 
+              My passion lies in crafting high-performance, aesthetically pleasing user interfaces that deliver frictionless experiences across desktop and mobile devices.
+            </p>
+            <p className="story-paragraph">
+              Through virtual full-stack and web development internships at <strong>CodeAlpha</strong> and <strong>CodSoft</strong>, 
+              I've designed and deployed real-world applications including an <strong>AI-powered resume builder with ATS scoring</strong> and <strong>DropShxre</strong>, a high-speed file distribution tool. 
+              Recognized as a <strong>Top Performer in the CodeX Coding Competition</strong> at SRMU, I blend algorithmic thinking with frontend craftsmanship.
+            </p>
+            <div className="story-chips">
+              <span className="tech-tag">BCA Graduate Mindset</span>
+              <span className="tech-tag">Responsive UI & Modern CSS</span>
+              <span className="tech-tag">JavaScript (ES6+) & React</span>
+              <span className="tech-tag">Core Java & DSA Basics</span>
+              <span className="tech-tag">Cybersecurity Fundamentals</span>
             </div>
-            
-            {card.degree && (
-              <div className="about-education-details">
-                <span className="edu-degree">{card.degree}</span>
-                <span className="edu-institution">{card.institution}</span>
-                <span className="edu-duration">{card.duration}</span>
+          </div>
+        </div>
+
+        {/* 4 Supporting Feature Cards */}
+        <div className="about-cards-grid">
+          {highlightCards.map((card, idx) => (
+            <motion.div 
+              key={idx}
+              className="about-highlight-card glass-card"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.45, delay: idx * 0.1 }}
+            >
+              <div className="card-top-row">
+                <div className="card-icon-container">
+                  {card.icon}
+                </div>
+                <span className="card-period-tag">{card.period}</span>
               </div>
-            )}
+              <h3 className="card-main-title">{card.title}</h3>
+              <div className="card-sub-info">
+                <strong>{card.subtitle}</strong>
+                <span>{card.institution}</span>
+              </div>
+              <p className="card-detail-text">{card.description}</p>
+            </motion.div>
+          ))}
+        </div>
 
-            {card.content && <p className="about-card-desc">{card.content}</p>}
+        {/* Education Milestone Timeline */}
+        <div className="about-education-container glass-card">
+          <div className="education-header">
+            <div className="education-icon-box">
+              <Award size={20} />
+            </div>
+            <div>
+              <h3 className="education-heading">Educational Milestones</h3>
+              <p className="education-subheading">Formal academic background and qualification timeline</p>
+            </div>
+          </div>
 
-            {card.bullets && (
-              <ul className="about-bullets">
-                {card.bullets.map((bullet, index) => (
-                  <li key={index} className="about-bullet-item">
-                    <CheckCircle2 size={16} className="bullet-icon" />
-                    <span>{bullet}</span>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </motion.div>
-        ))}
+          <div className="education-items-list">
+            {educationTimeline.map((item, index) => (
+              <div key={index} className="education-timeline-item">
+                <div className="timeline-marker">
+                  <div className="marker-dot"></div>
+                  {index !== educationTimeline.length - 1 && <div className="marker-line"></div>}
+                </div>
+                <div className="timeline-item-body">
+                  <div className="timeline-title-row">
+                    <h4 className="timeline-degree">{item.degree}</h4>
+                    <span className="timeline-year">{item.year}</span>
+                  </div>
+                  <div className="timeline-institution">
+                    {item.institution} — <span className="timeline-location">{item.location}</span>
+                  </div>
+                  <p className="timeline-details">{item.details}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

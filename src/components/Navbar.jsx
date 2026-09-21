@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, Sun, Moon } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { Menu, X, Sun, Moon, PhoneCall } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import './Navbar.css';
 
 const navLinks = [
@@ -25,17 +25,17 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 25);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   useEffect(() => {
     const observerOptions = {
       root: null,
-      rootMargin: '-80px 0px -40% 0px', // adjustment for sticky navbar height
+      rootMargin: '-100px 0px -40% 0px',
       threshold: 0.15
     };
 
@@ -84,7 +84,7 @@ const Navbar = () => {
     setIsOpen(false);
     const element = document.getElementById(targetId);
     if (element) {
-      const navbarHeight = 80;
+      const navbarHeight = 90;
       const elementPosition = element.getBoundingClientRect().top + window.scrollY;
       const offsetPosition = elementPosition - navbarHeight;
 
@@ -96,64 +96,114 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={`navbar ${isScrolled ? 'navbar-scrolled' : ''}`}>
-      <div className="navbar-container">
-        <a href="#home" className="navbar-logo" onClick={(e) => handleLinkClick(e, 'home')}>
-          <span className="text-gradient">ARJXN</span>
-        </a>
+    <header className="navbar-wrapper">
+      <nav className={`navbar-floating ${isScrolled ? 'is-scrolled' : ''}`}>
+        <div className="navbar-inner">
+          <a 
+            href="#home" 
+            className="navbar-brand" 
+            onClick={(e) => handleLinkClick(e, 'home')}
+            aria-label="Arjan Ahmad Homepage"
+          >
+            <div className="brand-badge">AA</div>
+            <span className="brand-name">
+              ARJAN <span className="text-gradient">AHMAD</span>
+            </span>
+          </a>
 
-        {/* Desktop Menu */}
-        <ul className="nav-menu">
-          {navLinks.map((link) => (
-            <li key={link.name} className="nav-item">
-              <a
-                href={`#${link.targetId}`}
-                className={`nav-links ${activeSection === link.targetId ? 'active' : ''}`}
-                onClick={(e) => handleLinkClick(e, link.targetId)}
-              >
-                {link.name}
-                {activeSection === link.targetId && (
-                  <motion.span
-                    layoutId="activeUnderline"
-                    className="active-underline"
-                    transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                  />
-                )}
-              </a>
-            </li>
-          ))}
-        </ul>
+          {/* Desktop Navigation Links */}
+          <ul className="nav-menu" role="menubar">
+            {navLinks.map((link) => {
+              const isActive = activeSection === link.targetId;
+              return (
+                <li key={link.name} className="nav-item" role="none">
+                  <a
+                    href={`#${link.targetId}`}
+                    className={`nav-link ${isActive ? 'active' : ''}`}
+                    onClick={(e) => handleLinkClick(e, link.targetId)}
+                    role="menuitem"
+                    aria-current={isActive ? 'page' : undefined}
+                  >
+                    {link.name}
+                    {isActive && (
+                      <motion.span
+                        layoutId="activePill"
+                        className="active-pill"
+                        transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                      />
+                    )}
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
 
-        {/* Controls: Theme Toggle & Mobile Menu Icon */}
-        <div className="navbar-controls">
-          <button className="theme-toggle-btn" onClick={toggleTheme} aria-label="Toggle Theme">
-            {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
-          </button>
+          {/* Controls: Call Me Now + Theme Toggle + Mobile Menu Icon */}
+          <div className="navbar-actions">
+            <a 
+              href="tel:+916388451366" 
+              className="navbar-call-btn" 
+              aria-label="Call Arjan Ahmad Now at +91 6388451366"
+            >
+              <PhoneCall size={14} className="call-icon-pulse" />
+              <span>Call Me Now</span>
+            </a>
 
-          {/* Mobile Menu Icon */}
-          <div className="nav-icon" onClick={() => setIsOpen(!isOpen)} aria-label="Toggle Navigation Menu">
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
+            <button 
+              className="theme-toggle-btn" 
+              onClick={toggleTheme} 
+              aria-label={`Switch to ${theme === 'dark' ? 'Light' : 'Dark'} Mode`}
+              title={`Switch to ${theme === 'dark' ? 'Light' : 'Dark'} Mode`}
+            >
+              {theme === 'dark' ? <Sun size={17} /> : <Moon size={17} />}
+            </button>
+
+            {/* Mobile Hamburger Icon */}
+            <button 
+              className="nav-hamburger" 
+              onClick={() => setIsOpen(!isOpen)} 
+              aria-expanded={isOpen}
+              aria-label="Toggle Mobile Navigation Menu"
+            >
+              {isOpen ? <X size={22} /> : <Menu size={22} />}
+            </button>
           </div>
         </div>
-      </div>
 
-      {/* Mobile Menu Drawer */}
-      <div className={`mobile-menu ${isOpen ? 'active' : ''}`}>
-        <ul className="mobile-nav-menu">
-          {navLinks.map((link) => (
-            <li key={link.name} className="mobile-nav-item">
-              <a
-                href={`#${link.targetId}`}
-                className={`mobile-nav-links ${activeSection === link.targetId ? 'active' : ''}`}
-                onClick={(e) => handleLinkClick(e, link.targetId)}
-              >
-                {link.name}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </nav>
+        {/* Mobile Navigation Drawer */}
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div 
+              className="mobile-drawer"
+              initial={{ opacity: 0, y: -10, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -10, scale: 0.98 }}
+              transition={{ duration: 0.2 }}
+            >
+              <ul className="mobile-nav-list">
+                {navLinks.map((link) => (
+                  <li key={link.name} className="mobile-nav-item">
+                    <a
+                      href={`#${link.targetId}`}
+                      className={`mobile-nav-link ${activeSection === link.targetId ? 'active' : ''}`}
+                      onClick={(e) => handleLinkClick(e, link.targetId)}
+                    >
+                      {link.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+              <div className="mobile-drawer-footer">
+                <a href="tel:+916388451366" className="mobile-call-action">
+                  <PhoneCall size={16} />
+                  <span>Call: +91 6388451366</span>
+                </a>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </nav>
+    </header>
   );
 };
 

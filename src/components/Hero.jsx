@@ -1,52 +1,34 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, ArrowRight, Download, Terminal, Sparkles } from 'lucide-react';
+import { ArrowRight, Download, PhoneCall, Mail, Sparkles, Code, CheckCircle2, Shield } from 'lucide-react';
 import { FiGithub, FiLinkedin } from 'react-icons/fi';
 import devAvatar from '../assets/dev_avatar.png';
 import devAvatar2 from '../assets/dev_avatar_2.jpg';
-import './Hero.css'; 
+import './Hero.css';
 
 const roles = [
-  "Full Stack Developer",
-  "BCA Graduate",
-  "Aspiring Developer",
-  "Security Enthusiast",
-  "New Technologies Explorer",
+  "Frontend Developer",
+  "BCA Graduate (SRMU)",
+  "Web Application Builder",
+  "UI & Usability Specialist",
+  "Cybersecurity Enthusiast"
 ];
 
 const Hero = () => {
   const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
   const [currentText, setCurrentText] = useState("");
   const [isTypingComplete, setIsTypingComplete] = useState(false);
-  const [textOpacity, setTextOpacity] = useState(1);
-  const [textY, setTextY] = useState(0);
-
   const [activeImageIndex, setActiveImageIndex] = useState(0);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
-  // Alternating images timer (every 3.5 seconds)
+  // Subtle image crossfade every 4 seconds
   useEffect(() => {
     const imageTimer = setInterval(() => {
       setActiveImageIndex((prev) => (prev === 0 ? 1 : 0));
-    }, 3500);
+    }, 4000);
     return () => clearInterval(imageTimer);
   }, []);
 
-  // Mouse Parallax Effect (subtle parallax)
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      const { clientX, clientY } = e;
-      const { innerWidth, innerHeight } = window;
-      const x = (clientX - innerWidth / 2) / (innerWidth / 2);
-      const y = (clientY - innerHeight / 2) / (innerHeight / 2);
-      setMousePos({ x: x * 6, y: y * 6 });
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
-
-  // Typing & Fade Transition
+  // Role typing effect
   useEffect(() => {
     let timer;
     const fullText = roles[currentRoleIndex];
@@ -55,24 +37,15 @@ const Hero = () => {
       if (currentText.length < fullText.length) {
         timer = setTimeout(() => {
           setCurrentText(fullText.substring(0, currentText.length + 1));
-        }, 75);
+        }, 70);
       } else {
         setIsTypingComplete(true);
         timer = setTimeout(() => {
-          setTextOpacity(0);
-          setTextY(-5);
-        }, 1800);
+          setIsTypingComplete(false);
+          setCurrentText("");
+          setCurrentRoleIndex((prev) => (prev + 1) % roles.length);
+        }, 2200);
       }
-    } else {
-      timer = setTimeout(() => {
-        const nextIndex = (currentRoleIndex + 1) % roles.length;
-        setCurrentRoleIndex(nextIndex);
-        setCurrentText("");
-        setIsTypingComplete(false);
-        setTextOpacity(1);
-        setTextY(5);
-        setTimeout(() => setTextY(0), 50);
-      }, 350);
     }
 
     return () => clearTimeout(timer);
@@ -81,7 +54,7 @@ const Hero = () => {
   const handleScrollTo = (id) => {
     const element = document.getElementById(id);
     if (element) {
-      const navbarHeight = 80;
+      const navbarHeight = 90;
       const elementPosition = element.getBoundingClientRect().top + window.scrollY;
       const offsetPosition = elementPosition - navbarHeight;
 
@@ -93,148 +66,182 @@ const Hero = () => {
   };
 
   return (
-    <section id="home" className="hero-section container section-reveal">
-      <div className="hero-grid">
-        <motion.div 
-          className="hero-text-content"
-          initial={{ opacity: 0, x: -30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
-        >
+    <section id="home" className="hero-section">
+      <div className="container hero-container">
+        <div className="hero-grid">
+          {/* Left Column: Personal Positioning & Call-to-Actions */}
           <motion.div 
-            className="hero-badge"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2, duration: 0.5 }}
-          >
-            <Sparkles size={14} className="hero-badge-icon" />
-            <span>BCA Graduate | Aspiring Full Stack Developer</span>
-          </motion.div>
-          
-          <motion.h1 
-            className="hero-name"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.5 }}
-          >
-            Hi, I'm <span className="text-gradient">Arjan Ahmad</span>
-          </motion.h1>
-
-          <motion.h2 
-            className="hero-typing-container"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4, duration: 0.5 }}
-          >
-            <Terminal size={20} className="inline-terminal-icon" />
-            <span className="typing-prefix">Specializing in</span>{' '}
-            <span 
-              className="typed-text text-gradient-cyan"
-              style={{
-                opacity: textOpacity,
-                transform: `translateY(${textY}px)`,
-                transition: 'opacity 0.4s cubic-bezier(0.22, 0.61, 0.36, 1), transform 0.4s cubic-bezier(0.22, 0.61, 0.36, 1)',
-                display: 'inline-block'
-              }}
-            >
-              {currentText}
-            </span>
-            <span className="typing-cursor">|</span>
-          </motion.h2>
-
-          <motion.p 
-            className="hero-desc"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5, duration: 0.5 }}
-          >
-            Building responsive, user-focused web applications with clean code, scalable architecture, and modern frameworks. BCA graduate with hands-on full-stack internship experience and an active interest in cybersecurity.
-          </motion.p>
-
-          <motion.div 
-            className="hero-status-badge"
-            initial={{ opacity: 0, y: 10 }}
+            className="hero-copy"
+            initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.55, duration: 0.5 }}
+            transition={{ duration: 0.65, ease: "easeOut" }}
           >
-            <span className="status-badge-dot"></span>
-            <span className="status-badge-text">Available for Full Stack Developer Roles</span>
-          </motion.div>
-
-          <motion.div 
-            className="hero-socials"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.6, duration: 0.5 }}
-          >
-            <a href="https://github.com/arjanahmad" target="_blank" rel="noreferrer" className="hero-social-link" aria-label="GitHub">
-              <FiGithub size={20} />
-            </a>
-            <a href="https://linkedin.com/in/arjan-ahmad-srmu" target="_blank" rel="noreferrer" className="hero-social-link" aria-label="LinkedIn">
-              <FiLinkedin size={20} />
-            </a>
-            <a href="mailto:arjanahmad7861@gmail.com" className="hero-social-link" aria-label="Email">
-              <Mail size={20} />
-            </a>
-          </motion.div>
-
-          <motion.div 
-            className="hero-ctas"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7, duration: 0.5 }}
-          >
-            <button className="btn btn-primary" onClick={() => handleScrollTo('projects')}>
-              View Projects <ArrowRight size={16} />
-            </button>
-            <a href="/resume.pdf" target="_blank" rel="noreferrer" className="btn btn-outline">
-              Resume <Download size={16} />
-            </a>
-            <button className="btn btn-outline" onClick={() => handleScrollTo('contact')}>
-              Contact Me
-            </button>
-          </motion.div>
-        </motion.div>
-
-        <motion.div 
-          className="hero-image-content"
-          initial={{ opacity: 0, x: 30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <div 
-            className="profile-img-parallax-container"
-            style={{ 
-              transform: `translate(${mousePos.x}px, ${mousePos.y}px)`,
-              transition: 'transform 0.2s ease-out'
-            }}
-          >
-            <div className="profile-img-wrapper float-breathe-glow">
-              <img 
-                src={devAvatar} 
-                alt="Arjan Ahmad Developer Avatar 1" 
-                className="profile-avatar" 
-                style={{
-                  opacity: activeImageIndex === 0 ? 1 : 0,
-                  transform: activeImageIndex === 0 ? 'scale(1)' : 'scale(0.98)',
-                  zIndex: activeImageIndex === 0 ? 3 : 2
-                }}
-              />
-              <img 
-                src={devAvatar2} 
-                alt="Arjan Ahmad Developer Avatar 2" 
-                className="profile-avatar" 
-                style={{
-                  opacity: activeImageIndex === 1 ? 1 : 0,
-                  transform: activeImageIndex === 1 ? 'scale(1)' : 'scale(0.98)',
-                  zIndex: activeImageIndex === 1 ? 3 : 2
-                }}
-              />
-              <div className="avatar-ring ring-cyan"></div>
-              <div className="avatar-ring ring-violet"></div>
+            {/* Live Status Badge */}
+            <div className="hero-status-pill">
+              <span className="live-status-dot"></span>
+              <span className="hero-status-text">Available for Frontend & Full-Stack Roles</span>
             </div>
-          </div>
-        </motion.div>
+
+            <h1 className="hero-heading">
+              Hi, I'm <span className="text-gradient">Arjan Ahmad</span>
+            </h1>
+
+            <div className="hero-role-row">
+              <span className="role-prefix">Specialized in</span>
+              <span className="role-dynamic text-gradient-cyan">
+                {currentText}
+                <span className="role-cursor">|</span>
+              </span>
+            </div>
+
+            <p className="hero-summary">
+              BCA graduate from <strong>Shri Ramswaroop Memorial University</strong> with hands-on 
+              internship experience at <strong>CodeAlpha</strong> and <strong>CodSoft</strong>. 
+              I design and build fast, responsive, and accessible web applications with clean code, modern JavaScript (ES6+), React, and intuitive UI/UX.
+            </p>
+
+            {/* Quick Metrics Bar */}
+            <div className="hero-quick-metrics">
+              <div className="metric-badge">
+                <CheckCircle2 size={14} className="metric-icon" />
+                <span>BCA Graduate '26</span>
+              </div>
+              <div className="metric-badge">
+                <Code size={14} className="metric-icon" />
+                <span>2+ Internships</span>
+              </div>
+              <div className="metric-badge">
+                <Shield size={14} className="metric-icon" />
+                <span>Security Aware</span>
+              </div>
+            </div>
+
+            {/* Primary & Secondary CTA System */}
+            <div className="hero-cta-group">
+              {/* High-priority Call Me Now action */}
+              <a 
+                href="tel:+916388451366" 
+                className="btn btn-call hero-btn-call"
+                aria-label="Direct Phone Call to Arjan Ahmad"
+              >
+                <PhoneCall size={18} />
+                <span>Call Me Now</span>
+              </a>
+
+              {/* Secondary CTA: Projects */}
+              <button 
+                className="btn btn-primary" 
+                onClick={() => handleScrollTo('projects')}
+                aria-label="View Projects Section"
+              >
+                <span>View Projects</span>
+                <ArrowRight size={16} />
+              </button>
+
+              {/* Secondary CTA: Resume Download */}
+              <a 
+                href="/resume.pdf" 
+                target="_blank" 
+                rel="noreferrer" 
+                className="btn btn-outline"
+                download="Arjan_Ahmad_Resume.pdf"
+                aria-label="Download Official Resume PDF"
+              >
+                <Download size={16} />
+                <span>Resume</span>
+              </a>
+            </div>
+
+            {/* Quick Contact & Social Strip */}
+            <div className="hero-contact-strip">
+              <span className="strip-label">Direct Connect:</span>
+              <div className="strip-links">
+                <a 
+                  href="tel:+916388451366" 
+                  className="quick-link phone-link" 
+                  title="Direct Call"
+                >
+                  <PhoneCall size={15} />
+                  <span>+91 6388451366</span>
+                </a>
+                <a 
+                  href="mailto:arjanahmad7861@gmail.com" 
+                  className="quick-link email-link" 
+                  title="Send Email"
+                >
+                  <Mail size={15} />
+                  <span>arjanahmad7861@gmail.com</span>
+                </a>
+                <a 
+                  href="https://github.com/arjanahmad" 
+                  target="_blank" 
+                  rel="noreferrer" 
+                  className="quick-social" 
+                  aria-label="GitHub Profile"
+                >
+                  <FiGithub size={17} />
+                </a>
+                <a 
+                  href="https://linkedin.com/in/arjan-ahmad-srmu" 
+                  target="_blank" 
+                  rel="noreferrer" 
+                  className="quick-social" 
+                  aria-label="LinkedIn Profile"
+                >
+                  <FiLinkedin size={17} />
+                </a>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Right Column: Visual Showcase Card */}
+          <motion.div 
+            className="hero-visual"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
+          >
+            <div className="avatar-card-container">
+              <div className="avatar-frame">
+                <img 
+                  src={devAvatar} 
+                  alt="Arjan Ahmad - Frontend Developer" 
+                  className="avatar-photo" 
+                  style={{
+                    opacity: activeImageIndex === 0 ? 1 : 0,
+                    zIndex: activeImageIndex === 0 ? 2 : 1
+                  }}
+                />
+                <img 
+                  src={devAvatar2} 
+                  alt="Arjan Ahmad - Software Developer" 
+                  className="avatar-photo" 
+                  style={{
+                    opacity: activeImageIndex === 1 ? 1 : 0,
+                    zIndex: activeImageIndex === 1 ? 2 : 1
+                  }}
+                />
+              </div>
+
+              {/* Floating Highlight Chips */}
+              <div className="floating-badge badge-top-right glass-card">
+                <Sparkles size={16} className="badge-sparkle-icon" />
+                <div>
+                  <strong>CodeX Top Performer</strong>
+                  <small>SRMU Techfest</small>
+                </div>
+              </div>
+
+              <div className="floating-badge badge-bottom-left glass-card">
+                <Code size={16} className="badge-code-icon" />
+                <div>
+                  <strong>Modern Web Stack</strong>
+                  <small>React • JavaScript • CSS3</small>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );

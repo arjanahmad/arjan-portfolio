@@ -1,172 +1,195 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Code2, Terminal, Database, Wrench, Cpu } from 'lucide-react';
+import { Code2, Terminal, Wrench, Globe, Shield, Users, Check } from 'lucide-react';
 import './Skills.css';
 
-const categoryIcons = {
-  "Frontend Web": <Code2 size={22} className="category-icon" />,
-  "Programming & Logic": <Terminal size={22} className="category-icon" />,
-  "Database & Querying": <Database size={22} className="category-icon" />,
-  "Development Tools": <Wrench size={22} className="category-icon" />,
-  "Core Competencies": <Cpu size={22} className="category-icon" />,
-};
-
-const Counter = ({ value }) => {
-  const [count, setCount] = useState(0);
-  const ref = useRef(null);
-  const [started, setStarted] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setStarted(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.1 }
-    );
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    if (!started) return;
-    let startTime = null;
-    const duration = 1000;
-
-    const animate = (timestamp) => {
-      if (!startTime) startTime = timestamp;
-      const progress = timestamp - startTime;
-      const current = Math.min(Math.floor((progress / duration) * value), value);
-      setCount(current);
-      if (progress < duration) {
-        requestAnimationFrame(animate);
-      } else {
-        setCount(value);
-      }
-    };
-    requestAnimationFrame(animate);
-  }, [started, value]);
-
-  return <span ref={ref}>{count}%</span>;
-};
+const skillCategories = [
+  {
+    id: "frontend",
+    title: "Frontend Development",
+    icon: <Code2 size={20} className="cat-icon text-cyan" />,
+    badge: "Core Expertise",
+    description: "Engineering clean, semantic, responsive, and cross-browser compliant user interfaces.",
+    skills: [
+      { name: "HTML5", highlight: "Semantic & Accessible" },
+      { name: "CSS3", highlight: "Flexbox, Grid & Modern Layouts" },
+      { name: "JavaScript (ES6+)", highlight: "Async, DOM & Modern Syntax" },
+      { name: "Responsive Web Design", highlight: "Mobile-First Architecture" },
+      { name: "React.js", highlight: "Hooks, Components & State" }
+    ]
+  },
+  {
+    id: "programming",
+    title: "Programming & Logic",
+    icon: <Terminal size={20} className="cat-icon text-violet" />,
+    badge: "Algorithmic Foundation",
+    description: "Strong structural programming, object-oriented concepts, and algorithmic reasoning.",
+    skills: [
+      { name: "Core Java", highlight: "OOP Principles & Classes" },
+      { name: "Basic DSA", highlight: "Arrays, Strings, Stacks & Queues" },
+      { name: "Object-Oriented Programming", highlight: "Inheritance, Polymorphism & Abstraction" },
+      { name: "Algorithmic Thinking", highlight: "CodeX Competition Top Performer" }
+    ]
+  },
+  {
+    id: "tools",
+    title: "Tools & Version Control",
+    icon: <Wrench size={20} className="cat-icon text-cyan" />,
+    badge: "Developer Workflow",
+    description: "Industry-standard development workflows, command-line usage, and version control.",
+    skills: [
+      { name: "Git", highlight: "Branching, Merging & History" },
+      { name: "GitHub", highlight: "Repositories & Open Collaboration" },
+      { name: "VS Code", highlight: "Extensions, Debugging & Custom Configs" },
+      { name: "Chrome DevTools", highlight: "DOM Inspection, Network & Profiling" }
+    ]
+  },
+  {
+    id: "web-concepts",
+    title: "Web Concepts & Engineering",
+    icon: <Globe size={20} className="cat-icon text-violet" />,
+    badge: "Production Standards",
+    description: "Ensuring web applications are fast, cross-device reliable, and easily maintainable.",
+    skills: [
+      { name: "Cross-Browser Compatibility", highlight: "Chrome, Firefox, Safari & Edge" },
+      { name: "Performance Optimization", highlight: "Asset Sizing, Lazy Loading & Rendering" },
+      { name: "Debugging", highlight: "Runtime Inspection & Error Handling" },
+      { name: "Web APIs & REST Basics", highlight: "Fetch, JSON & Asynchronous Integration" }
+    ]
+  },
+  {
+    id: "cybersecurity",
+    title: "Cybersecurity Fundamentals",
+    icon: <Shield size={20} className="cat-icon text-cyan" />,
+    badge: "Security Aware",
+    description: "Applying foundational security awareness to prevent standard web application vulnerabilities.",
+    skills: [
+      { name: "Cybersecurity Fundamentals", highlight: "SRMU VIVEKA Workshop" },
+      { name: "System Security", highlight: "Authentication & Safe State Practices" },
+      { name: "Vulnerability Analysis", highlight: "Input Sanitization & Injection Defense" },
+      { name: "Risk Mitigation", highlight: "Defensive Coding Principles" }
+    ]
+  },
+  {
+    id: "professional",
+    title: "Professional Competencies",
+    icon: <Users size={20} className="cat-icon text-violet" />,
+    badge: "Workplace Ready",
+    description: "Collaborative, communicative, and methodical mindset proven in remote internship settings.",
+    skills: [
+      { name: "Problem Solving", highlight: "Analytical breakdown of technical issues" },
+      { name: "Logical Reasoning", highlight: "Structured decision-making" },
+      { name: "Technical Communication", highlight: "Documentation & clear project articulation" },
+      { name: "Adaptability & Learning", highlight: "Rapid tool adoption & builder mindset" },
+      { name: "Time Management", highlight: "Delivering sprint tasks on schedule" },
+      { name: "Teamwork", highlight: "Effective collaboration in remote teams" }
+    ]
+  }
+];
 
 const Skills = () => {
-  const skillsData = {
-    "Frontend Web": [
-      { name: "HTML5 / CSS3", level: 85 },
-      { name: "JavaScript (ES6+)", level: 80 },
-      { name: "React.js", level: 75 },
-      { name: "Responsive UI & Flex/Grid", level: 90 }
-    ],
-    "Programming & Logic": [
-      { name: "Core Java", level: 75 },
-      { name: "C++ Programming", level: 70 },
-      { name: "C Language Fundamentals", level: 65 } 
-    ],
-    "Database & Querying": [
-      { name: "MySQL / Relational DBs", level: 75 }
-    ],
-    "Development Tools": [
-      { name: "Git & GitHub Version Control", level: 85 },
-      { name: "VS Code & IntelliJ IDEA", level: 90 },
-      { name: "Netlify & Web Deployment", level: 85 }
-    ],
-    "Core Competencies": [
-      { name: "Data Structures Basics", level: 75 },
-      { name: "Object-Oriented Programming (OOP)", level: 80 },
-      { name: "Problem Solving & Analytical Thinking", level: 85 },
-      { name: "Technical Communication", level: 80 }
-    ]
-  };
+  const [activeTab, setActiveTab] = useState("all");
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  };
-
-  const cardVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: { duration: 0.5, ease: "easeOut" }
-    }
-  };
+  const filteredCategories = activeTab === "all"
+    ? skillCategories
+    : skillCategories.filter(c => c.id === activeTab);
 
   return (
-    <section id="skills" className="skills-section container section-reveal">
-      <div className="section-header">
-        <motion.h2 
-          className="section-title"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          Technical <span className="text-gradient">Skills</span>
-        </motion.h2>
-        <motion.p 
-          className="section-subtitle"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-        >
-          Structured domain proficiency built through BCA coursework, self-learning, and practical internships.
-        </motion.p>
-      </div>
+    <section id="skills" className="skills-section section-reveal">
+      <div className="container">
+        {/* Section Header */}
+        <div className="section-header">
+          <div className="section-pill-badge">
+            <span className="badge-dot"></span>
+            <span>Skill Architecture</span>
+          </div>
+          <h2 className="section-title">
+            Technical & Professional <span className="text-gradient">Competencies</span>
+          </h2>
+          <p className="section-subtitle">
+            Curated skills backed by BCA coursework, coding competitions, virtual internships, and hands-on web projects.
+          </p>
+        </div>
 
-      <motion.div 
-        className="skills-grid"
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-      >
-        {Object.entries(skillsData).map(([category, list]) => (
-          <motion.div 
-            key={category}
-            className="skills-category-card glass-card"
-            variants={cardVariants}
+        {/* Filter Tabs */}
+        <div className="skills-tab-bar">
+          <button 
+            className={`skill-tab ${activeTab === 'all' ? 'active' : ''}`}
+            onClick={() => setActiveTab('all')}
           >
-            <h3 className="category-title">
-              {categoryIcons[category]}
-              <span>{category}</span>
-            </h3>
-            <div className="skills-list">
-              {list.map((skill, index) => (
-                <div key={index} className="skill-item">
-                  <div className="skill-details">
-                    <span className="skill-name">{skill.name}</span>
-                    <span className="skill-percentage">
-                      <Counter value={skill.level} />
-                    </span>
-                  </div>
-                  <div className="progress-bar-bg">
-                    <motion.div 
-                      className="progress-bar-fill"
-                      initial={{ scaleX: 0 }}
-                      whileInView={{ scaleX: skill.level / 100 }}
-                      viewport={{ once: true }}
-                      style={{ transformOrigin: 'left' }}
-                      transition={{ duration: 1.1, delay: 0.15, ease: "easeOut" }}
-                    />
-                  </div>
+            All Skills
+          </button>
+          <button 
+            className={`skill-tab ${activeTab === 'frontend' ? 'active' : ''}`}
+            onClick={() => setActiveTab('frontend')}
+          >
+            Frontend
+          </button>
+          <button 
+            className={`skill-tab ${activeTab === 'programming' ? 'active' : ''}`}
+            onClick={() => setActiveTab('programming')}
+          >
+            Programming & DSA
+          </button>
+          <button 
+            className={`skill-tab ${activeTab === 'tools' ? 'active' : ''}`}
+            onClick={() => setActiveTab('tools')}
+          >
+            Tools
+          </button>
+          <button 
+            className={`skill-tab ${activeTab === 'cybersecurity' ? 'active' : ''}`}
+            onClick={() => setActiveTab('cybersecurity')}
+          >
+            Cybersecurity
+          </button>
+          <button 
+            className={`skill-tab ${activeTab === 'professional' ? 'active' : ''}`}
+            onClick={() => setActiveTab('professional')}
+          >
+            Professional
+          </button>
+        </div>
+
+        {/* Skills Grid */}
+        <div className="skills-category-grid">
+          {filteredCategories.map((category, idx) => (
+            <motion.div
+              key={category.id}
+              className="skill-category-card glass-card"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.45, delay: idx * 0.08 }}
+            >
+              <div className="cat-card-header">
+                <div className="cat-icon-wrap">
+                  {category.icon}
                 </div>
-              ))}
-            </div>
-          </motion.div>
-        ))}
-      </motion.div>
+                <div className="cat-meta-title">
+                  <span className="cat-badge-pill">{category.badge}</span>
+                  <h3 className="cat-title">{category.title}</h3>
+                </div>
+              </div>
+
+              <p className="cat-desc">{category.description}</p>
+
+              {/* Skill Chips List */}
+              <div className="skill-chips-group">
+                {category.skills.map((skill, sIdx) => (
+                  <div key={sIdx} className="skill-chip-item">
+                    <div className="chip-header">
+                      <Check size={13} className="chip-check" />
+                      <span className="chip-name">{skill.name}</span>
+                    </div>
+                    <small className="chip-highlight">{skill.highlight}</small>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
     </section>
   );
 };
