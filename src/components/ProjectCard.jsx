@@ -1,121 +1,169 @@
-import { motion } from 'framer-motion';
-import { ExternalLink, Sparkles, Globe, CheckCircle2, FileText, Layers } from 'lucide-react';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import {
+  ExternalLink,
+  Sparkles,
+  Globe,
+  CheckCircle2,
+  FileText,
+  Layers,
+  Gamepad2,
+  Calculator,
+  ChevronDown
+} from 'lucide-react';
 import { FiGithub } from 'react-icons/fi';
 import './ProjectCard.css';
 
 const ProjectCard = ({ project, index }) => {
-  const getCardHeaderGradient = (id) => {
-    switch(id) {
-      case 1:
-        return 'linear-gradient(135deg, rgba(6, 182, 212, 0.28) 0%, rgba(59, 130, 246, 0.28) 50%, rgba(139, 92, 246, 0.28) 100%)';
-      case 2:
-        return 'linear-gradient(135deg, rgba(16, 185, 129, 0.28) 0%, rgba(6, 182, 212, 0.28) 100%)';
-      case 3:
-        return 'linear-gradient(135deg, rgba(99, 102, 241, 0.28) 0%, rgba(168, 85, 247, 0.28) 100%)';
-      case 4:
-        return 'linear-gradient(135deg, rgba(249, 115, 22, 0.28) 0%, rgba(239, 68, 68, 0.28) 100%)';
-      case 5:
-        return 'linear-gradient(135deg, rgba(56, 189, 248, 0.28) 0%, rgba(59, 130, 246, 0.28) 100%)';
-      default:
-        return 'linear-gradient(135deg, rgba(6, 182, 212, 0.28) 0%, rgba(139, 92, 246, 0.28) 100%)';
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const toggleExpand = () => {
+    setIsExpanded(prev => !prev);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      toggleExpand();
     }
   };
 
   const getProjectIcon = (id) => {
-    switch(id) {
+    switch (id) {
       case 1:
-        return <FileText size={32} className="project-banner-icon text-cyan" />;
+        return <FileText size={22} className="project-icon text-cyan" />;
       case 2:
-        return <Globe size={32} className="project-banner-icon text-green" />;
+        return <Globe size={22} className="project-icon text-green" />;
       case 3:
-        return <Layers size={32} className="project-banner-icon text-violet" />;
+        return <Layers size={22} className="project-icon text-violet" />;
+      case 4:
+        return <Gamepad2 size={22} className="project-icon text-cyan" />;
+      case 5:
+        return <Calculator size={22} className="project-icon text-violet" />;
       default:
-        return <Sparkles size={32} className="project-banner-icon text-cyan" />;
+        return <Sparkles size={22} className="project-icon text-cyan" />;
     }
   };
 
   return (
-    <motion.article 
+    <motion.article
       layout
-      className="project-saas-card glass-card"
-      initial={{ opacity: 0, y: 24 }}
+      className={`project-compact-card glass-card ${isExpanded ? 'is-expanded' : ''}`}
+      initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, scale: 0.96 }}
-      transition={{ duration: 0.4, delay: index * 0.08 }}
+      exit={{ opacity: 0, scale: 0.98 }}
+      transition={{ duration: 0.35, delay: index * 0.06 }}
     >
-      {/* Banner / Visual Top */}
-      <div 
-        className="project-card-banner"
-        style={{ background: getCardHeaderGradient(project.id) }}
+      {/* Compact Default State: Header with Name, Icon, Badge, Arrow */}
+      <div
+        className="project-card-compact-header"
+        onClick={toggleExpand}
+        onKeyDown={handleKeyDown}
+        tabIndex={0}
+        role="button"
+        aria-expanded={isExpanded}
+        aria-label={`${project.title}. Click to ${isExpanded ? 'collapse' : 'expand'} project details.`}
       >
-        <div className="banner-top-row">
-          <span className={`project-status-pill ${project.badgeType}`}>
-            {project.badgeType === 'live' && <span className="live-pulse-dot"></span>}
-            {project.badgeType === 'featured' && <Sparkles size={12} className="sparkle-ico" />}
-            {project.badgeText}
+        <div className="project-header-left">
+          <div className="project-icon-box">
+            {getProjectIcon(project.id)}
+          </div>
+          <div className="project-title-meta">
+            <div className="project-badge-row">
+              <span className={`project-pill ${project.badgeType}`}>
+                {project.badgeType === 'live' && <span className="live-dot"></span>}
+                {project.badgeText}
+              </span>
+              <span className="project-category-tag">{project.category}</span>
+            </div>
+            <h3 className="project-name">{project.title}</h3>
+          </div>
+        </div>
+
+        <div className="project-header-right">
+          <span className="project-expand-hint">
+            {isExpanded ? 'Hide Details' : 'Details'}
           </span>
-          <span className="project-period">{project.period}</span>
-        </div>
-        <div className="banner-visual-center">
-          {getProjectIcon(project.id)}
-        </div>
-      </div>
-
-      {/* Card Body */}
-      <div className="project-card-body">
-        <h3 className="project-title">{project.title}</h3>
-        <p className="project-summary">{project.summary}</p>
-
-        {/* Highlight Bullets */}
-        <ul className="project-feature-list">
-          {project.highlights.map((bullet, bIdx) => (
-            <li key={bIdx} className="feature-item">
-              <CheckCircle2 size={15} className="feature-check-icon" />
-              <span>{bullet}</span>
-            </li>
-          ))}
-        </ul>
-
-        {/* Tech Badges */}
-        <div className="project-tech-row">
-          {project.tech.map((t, tIdx) => (
-            <span key={tIdx} className="tech-tag">{t}</span>
-          ))}
-        </div>
-
-        {/* Action Buttons */}
-        <div className="project-actions-row">
-          {project.live && (
-            <a 
-              href={project.live} 
-              target="_blank" 
-              rel="noreferrer" 
-              className="btn btn-primary btn-action"
-              aria-label={`Open Live Demo for ${project.title}`}
-            >
-              <span>Live Demo</span>
-              <ExternalLink size={15} />
-            </a>
-          )}
-
-          {project.github && (
-            <a 
-              href={project.github} 
-              target="_blank" 
-              rel="noreferrer" 
-              className="btn btn-outline btn-action"
-              aria-label={`View Source Code for ${project.title} on GitHub`}
-            >
-              <FiGithub size={15} />
-              <span>Code</span>
-            </a>
-          )}
-
-          {!project.live && !project.github && (
-            <span className="internal-tag">Personal Portfolio Project</span>
-          )}
+          <div className={`project-expand-arrow ${isExpanded ? 'arrow-active' : ''}`}>
+            <ChevronDown size={18} />
+          </div>
         </div>
       </div>
+
+      {/* Expandable Details on Click */}
+      <AnimatePresence>
+        {isExpanded && (
+          <motion.div
+            key="details"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            className="project-expanded-content"
+          >
+            <div className="project-content-divider"></div>
+
+            {/* Description */}
+            <p className="project-full-summary">{project.summary}</p>
+
+            {/* Features / Highlights */}
+            <div className="project-features-block">
+              <h4 className="project-subheading">Key Highlights & Architecture:</h4>
+              <ul className="project-features-list">
+                {project.highlights.map((bullet, bIdx) => (
+                  <li key={bIdx} className="project-feature-item">
+                    <CheckCircle2 size={15} className="feature-check" />
+                    <span>{bullet}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Tech Stack */}
+            <div className="project-tech-block">
+              <h4 className="project-subheading">Technologies Used:</h4>
+              <div className="project-tech-tags">
+                {project.tech.map((t, tIdx) => (
+                  <span key={tIdx} className="tech-tag">{t}</span>
+                ))}
+              </div>
+            </div>
+
+            {/* Actions: Live Demo + GitHub */}
+            <div className="project-actions-block">
+              {project.live && (
+                <a
+                  href={project.live}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn btn-primary btn-sm-action"
+                  aria-label={`Open Live Demo for ${project.title}`}
+                >
+                  <span>Live Demo</span>
+                  <ExternalLink size={14} />
+                </a>
+              )}
+
+              {project.github && (
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn btn-outline btn-sm-action"
+                  aria-label={`View Source Code for ${project.title} on GitHub`}
+                >
+                  <FiGithub size={15} />
+                  <span>View Code</span>
+                </a>
+              )}
+
+              {!project.live && !project.github && (
+                <span className="internal-tag">Personal Portfolio Project</span>
+              )}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.article>
   );
 };

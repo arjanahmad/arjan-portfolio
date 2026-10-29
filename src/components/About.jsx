@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { GraduationCap, Target, ShieldCheck, Cpu, Code2, Award, ArrowUpRight } from 'lucide-react';
+import { GraduationCap, Target, ShieldCheck, Code2, Award } from 'lucide-react';
 import './About.css';
 
 const About = () => {
@@ -9,7 +9,7 @@ const About = () => {
       title: "Academic Foundation",
       subtitle: "Bachelor of Computer Applications (BCA)",
       institution: "Shri Ramswaroop Memorial University (SRMU)",
-      period: "Expected June 2026 | Lucknow, UP",
+      period: "Completed June 2026 | Lucknow, UP",
       description: "Structured computer science foundation in Object-Oriented Programming (Core Java), Data Structures & Algorithms, DBMS, and Web Architecture."
     },
     {
@@ -43,7 +43,7 @@ const About = () => {
       degree: "Bachelor of Computer Applications (BCA)",
       institution: "Shri Ramswaroop Memorial University",
       location: "Lucknow, Uttar Pradesh",
-      year: "Expected June 2026",
+      year: "Completed June 2026",
       details: "Focus on Web Development, Core Java, Relational Databases, and Software Engineering principles."
     },
     {
@@ -75,7 +75,7 @@ const About = () => {
             About <span className="text-gradient">Arjan Ahmad</span>
           </h2>
           <p className="section-subtitle">
-            Frontend developer and BCA candidate driven by clean code, intuitive user experiences, and systematic problem solving.
+            Frontend developer and BCA graduate driven by clean code, intuitive user experiences, and systematic problem solving.
           </p>
         </div>
 
@@ -86,12 +86,12 @@ const About = () => {
               Building modern web solutions with precision, usability, and speed.
             </h3>
             <p className="story-paragraph">
-              I am a final-year <strong>BCA student at Shri Ramswaroop Memorial University</strong> based in Lucknow, Uttar Pradesh. 
+              I am a <strong>BCA graduate from Shri Ramswaroop Memorial University</strong> based in Lucknow, Uttar Pradesh.
               My passion lies in crafting high-performance, aesthetically pleasing user interfaces that deliver frictionless experiences across desktop and mobile devices.
             </p>
             <p className="story-paragraph">
-              Through virtual full-stack and web development internships at <strong>CodeAlpha</strong> and <strong>CodSoft</strong>, 
-              I've designed and deployed real-world applications including an <strong>AI-powered resume builder with ATS scoring</strong> and <strong>DropShxre</strong>, a high-speed file distribution tool. 
+              Through virtual full-stack and web development internships at <strong>CodeAlpha</strong> and <strong>CodSoft</strong>,
+              I've designed and deployed real-world applications including an <strong>AI-powered resume builder with ATS scoring</strong> and <strong>DropShxre</strong>, a high-speed file distribution tool.
               Recognized as a <strong>Top Performer in the CodeX Coding Competition</strong> at SRMU, I blend algorithmic thinking with frontend craftsmanship.
             </p>
             <div className="story-chips">
@@ -107,7 +107,7 @@ const About = () => {
         {/* 4 Supporting Feature Cards */}
         <div className="about-cards-grid">
           {highlightCards.map((card, idx) => (
-            <motion.div 
+            <motion.div
               key={idx}
               className="about-highlight-card glass-card"
               initial={{ opacity: 0, y: 20 }}

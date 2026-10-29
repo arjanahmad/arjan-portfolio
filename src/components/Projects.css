@@ -11,13 +11,13 @@
   align-items: center;
   justify-content: center;
   gap: 0.55rem;
-  margin-bottom: 3rem;
+  margin-bottom: 2.75rem;
 }
 
 .filter-pill {
-  padding: 0.5rem 1.25rem;
+  padding: 0.48rem 1.15rem;
   font-family: var(--font-heading);
-  font-size: 0.88rem;
+  font-size: 0.86rem;
   font-weight: 600;
   color: var(--text-muted);
   background: var(--bg-subtle);
@@ -58,14 +58,15 @@ body.light-mode .filter-pill.active {
 
 /* Projects Card Grid */
 .projects-card-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-  gap: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  max-width: 960px;
+  margin: 0 auto;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 640px) {
   .projects-card-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 1rem;
   }
 }

@@ -1,98 +1,107 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Code2, Terminal, Wrench, Globe, Shield, Users, Check } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import {
+  Code2,
+  Terminal,
+  Wrench,
+  Cpu,
+  Globe,
+  Shield,
+  ChevronDown,
+  Check
+} from 'lucide-react';
 import './Skills.css';
 
 const skillCategories = [
   {
     id: "frontend",
-    title: "Frontend Development",
-    icon: <Code2 size={20} className="cat-icon text-cyan" />,
-    badge: "Core Expertise",
-    description: "Engineering clean, semantic, responsive, and cross-browser compliant user interfaces.",
+    title: "Front-End Development",
+    icon: <Code2 size={22} className="cat-icon text-cyan" />,
+    badge: "Core Focus",
     skills: [
-      { name: "HTML5", highlight: "Semantic & Accessible" },
-      { name: "CSS3", highlight: "Flexbox, Grid & Modern Layouts" },
-      { name: "JavaScript (ES6+)", highlight: "Async, DOM & Modern Syntax" },
-      { name: "Responsive Web Design", highlight: "Mobile-First Architecture" },
-      { name: "React.js", highlight: "Hooks, Components & State" }
+      { name: "HTML", highlight: "Semantic markup & structure" },
+      { name: "CSS", highlight: "Flexbox, Grid & responsive design" },
+      { name: "JavaScript", highlight: "ES6+, DOM manipulation & logic" },
+      { name: "Responsive Web Design", highlight: "Mobile-first & cross-device layouts" }
     ]
   },
   {
     id: "programming",
-    title: "Programming & Logic",
-    icon: <Terminal size={20} className="cat-icon text-violet" />,
+    title: "Programming & Core Concepts",
+    icon: <Terminal size={22} className="cat-icon text-violet" />,
     badge: "Algorithmic Foundation",
-    description: "Strong structural programming, object-oriented concepts, and algorithmic reasoning.",
     skills: [
-      { name: "Core Java", highlight: "OOP Principles & Classes" },
-      { name: "Basic DSA", highlight: "Arrays, Strings, Stacks & Queues" },
-      { name: "Object-Oriented Programming", highlight: "Inheritance, Polymorphism & Abstraction" },
-      { name: "Algorithmic Thinking", highlight: "CodeX Competition Top Performer" }
+      { name: "Core Java", highlight: "OOP fundamentals & application syntax" },
+      { name: "Object-Oriented Programming (OOP)", highlight: "Inheritance, polymorphism, encapsulation" },
+      { name: "Data Structures and Algorithms (DSA)", highlight: "Arrays, lists, searching & sorting" },
+      { name: "Functions and Programming Logic", highlight: "Modular architecture & problem solving" }
     ]
   },
   {
     id: "tools",
-    title: "Tools & Version Control",
-    icon: <Wrench size={20} className="cat-icon text-cyan" />,
-    badge: "Developer Workflow",
-    description: "Industry-standard development workflows, command-line usage, and version control.",
+    title: "Development Tools & Version Control",
+    icon: <Wrench size={22} className="cat-icon text-cyan" />,
+    badge: "Workflow & Tooling",
     skills: [
-      { name: "Git", highlight: "Branching, Merging & History" },
-      { name: "GitHub", highlight: "Repositories & Open Collaboration" },
-      { name: "VS Code", highlight: "Extensions, Debugging & Custom Configs" },
-      { name: "Chrome DevTools", highlight: "DOM Inspection, Network & Profiling" }
+      { name: "Git", highlight: "Branching, committing & version tracking" },
+      { name: "GitHub", highlight: "Remote repositories & collaboration" },
+      { name: "Visual Studio Code", highlight: "Extensions, debugging & custom setups" },
+      { name: "IntelliJ IDEA", highlight: "Java development & code analysis" }
+    ]
+  },
+  {
+    id: "os-linux",
+    title: "Operating Systems & Linux",
+    icon: <Cpu size={22} className="cat-icon text-violet" />,
+    badge: "Learning Area",
+    skills: [
+      { name: "Kali Linux", highlight: "Active learning path & command navigation" },
+      { name: "Basic Linux environment familiarity", highlight: "CLI navigation, permissions & basic shell" }
     ]
   },
   {
     id: "web-concepts",
     title: "Web Concepts & Engineering",
-    icon: <Globe size={20} className="cat-icon text-violet" />,
-    badge: "Production Standards",
-    description: "Ensuring web applications are fast, cross-device reliable, and easily maintainable.",
+    icon: <Globe size={22} className="cat-icon text-cyan" />,
+    badge: "Web Engineering",
     skills: [
-      { name: "Cross-Browser Compatibility", highlight: "Chrome, Firefox, Safari & Edge" },
-      { name: "Performance Optimization", highlight: "Asset Sizing, Lazy Loading & Rendering" },
-      { name: "Debugging", highlight: "Runtime Inspection & Error Handling" },
-      { name: "Web APIs & REST Basics", highlight: "Fetch, JSON & Asynchronous Integration" }
+      { name: "Web fundamentals", highlight: "HTTP/HTTPS, DOM, client-server model" },
+      { name: "Debugging", highlight: "Runtime error identification & tracing" },
+      { name: "Browser-based troubleshooting", highlight: "DevTools inspection & network analysis" },
+      { name: "Basic development workflow", highlight: "Component organization & agile practices" }
     ]
   },
   {
     id: "cybersecurity",
     title: "Cybersecurity Fundamentals",
-    icon: <Shield size={20} className="cat-icon text-cyan" />,
-    badge: "Security Aware",
-    description: "Applying foundational security awareness to prevent standard web application vulnerabilities.",
+    icon: <Shield size={22} className="cat-icon text-violet" />,
+    badge: "Defensive Awareness",
     skills: [
-      { name: "Cybersecurity Fundamentals", highlight: "SRMU VIVEKA Workshop" },
-      { name: "System Security", highlight: "Authentication & Safe State Practices" },
-      { name: "Vulnerability Analysis", highlight: "Input Sanitization & Injection Defense" },
-      { name: "Risk Mitigation", highlight: "Defensive Coding Principles" }
-    ]
-  },
-  {
-    id: "professional",
-    title: "Professional Competencies",
-    icon: <Users size={20} className="cat-icon text-violet" />,
-    badge: "Workplace Ready",
-    description: "Collaborative, communicative, and methodical mindset proven in remote internship settings.",
-    skills: [
-      { name: "Problem Solving", highlight: "Analytical breakdown of technical issues" },
-      { name: "Logical Reasoning", highlight: "Structured decision-making" },
-      { name: "Technical Communication", highlight: "Documentation & clear project articulation" },
-      { name: "Adaptability & Learning", highlight: "Rapid tool adoption & builder mindset" },
-      { name: "Time Management", highlight: "Delivering sprint tasks on schedule" },
-      { name: "Teamwork", highlight: "Effective collaboration in remote teams" }
+      { name: "Cybersecurity fundamentals", highlight: "Basic network & software protection principles" },
+      { name: "Security awareness", highlight: "Safe user data & vulnerability prevention" },
+      { name: "Basic vulnerability concepts", highlight: "Input sanitization & defense against common flaws" },
+      { name: "Ethical hacking learning path", highlight: "Foundational coursework & lab curiosity" }
     ]
   }
 ];
 
 const Skills = () => {
-  const [activeTab, setActiveTab] = useState("all");
+  // Support toggling individual category expansion
+  const [expandedCategories, setExpandedCategories] = useState({});
 
-  const filteredCategories = activeTab === "all"
-    ? skillCategories
-    : skillCategories.filter(c => c.id === activeTab);
+  const toggleCategory = (id) => {
+    setExpandedCategories(prev => ({
+      ...prev,
+      [id]: !prev[id]
+    }));
+  };
+
+  const handleKeyDown = (e, id) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      toggleCategory(id);
+    }
+  };
 
   return (
     <section id="skills" className="skills-section section-reveal">
@@ -107,87 +116,82 @@ const Skills = () => {
             Technical & Professional <span className="text-gradient">Competencies</span>
           </h2>
           <p className="section-subtitle">
-            Curated skills backed by BCA coursework, coding competitions, virtual internships, and hands-on web projects.
+            Six focused categories covering front-end development, core programming, developer tools, Linux, web concepts, and cybersecurity.
           </p>
         </div>
 
-        {/* Filter Tabs */}
-        <div className="skills-tab-bar">
-          <button 
-            className={`skill-tab ${activeTab === 'all' ? 'active' : ''}`}
-            onClick={() => setActiveTab('all')}
-          >
-            All Skills
-          </button>
-          <button 
-            className={`skill-tab ${activeTab === 'frontend' ? 'active' : ''}`}
-            onClick={() => setActiveTab('frontend')}
-          >
-            Frontend
-          </button>
-          <button 
-            className={`skill-tab ${activeTab === 'programming' ? 'active' : ''}`}
-            onClick={() => setActiveTab('programming')}
-          >
-            Programming & DSA
-          </button>
-          <button 
-            className={`skill-tab ${activeTab === 'tools' ? 'active' : ''}`}
-            onClick={() => setActiveTab('tools')}
-          >
-            Tools
-          </button>
-          <button 
-            className={`skill-tab ${activeTab === 'cybersecurity' ? 'active' : ''}`}
-            onClick={() => setActiveTab('cybersecurity')}
-          >
-            Cybersecurity
-          </button>
-          <button 
-            className={`skill-tab ${activeTab === 'professional' ? 'active' : ''}`}
-            onClick={() => setActiveTab('professional')}
-          >
-            Professional
-          </button>
-        </div>
+        {/* Exactly Six Compact Category Cards Grid */}
+        <div className="skills-six-grid">
+          {skillCategories.map((category, idx) => {
+            const isExpanded = !!expandedCategories[category.id];
 
-        {/* Skills Grid */}
-        <div className="skills-category-grid">
-          {filteredCategories.map((category, idx) => (
-            <motion.div
-              key={category.id}
-              className="skill-category-card glass-card"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.45, delay: idx * 0.08 }}
-            >
-              <div className="cat-card-header">
-                <div className="cat-icon-wrap">
-                  {category.icon}
-                </div>
-                <div className="cat-meta-title">
-                  <span className="cat-badge-pill">{category.badge}</span>
-                  <h3 className="cat-title">{category.title}</h3>
-                </div>
-              </div>
-
-              <p className="cat-desc">{category.description}</p>
-
-              {/* Skill Chips List */}
-              <div className="skill-chips-group">
-                {category.skills.map((skill, sIdx) => (
-                  <div key={sIdx} className="skill-chip-item">
-                    <div className="chip-header">
-                      <Check size={13} className="chip-check" />
-                      <span className="chip-name">{skill.name}</span>
-                    </div>
-                    <small className="chip-highlight">{skill.highlight}</small>
+            return (
+              <motion.div
+                key={category.id}
+                className={`skill-compact-card glass-card ${isExpanded ? 'is-expanded' : ''}`}
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: idx * 0.07 }}
+              >
+                {/* Clickable Header for Expand/Collapse */}
+                <div
+                  className="skill-card-clickable-header"
+                  onClick={() => toggleCategory(category.id)}
+                  onKeyDown={(e) => handleKeyDown(e, category.id)}
+                  tabIndex={0}
+                  role="button"
+                  aria-expanded={isExpanded}
+                  aria-label={`${category.title} category. Click to ${isExpanded ? 'collapse' : 'reveal'} skills.`}
+                >
+                  <div className="cat-icon-container">
+                    {category.icon}
                   </div>
-                ))}
-              </div>
-            </motion.div>
-          ))}
+
+                  <div className="cat-header-text">
+                    <span className="cat-badge-label">{category.badge}</span>
+                    <h3 className="cat-heading">{category.title}</h3>
+                    <span className="cat-skill-count">
+                      {category.skills.length} skills • {isExpanded ? 'Click to collapse' : 'Click to reveal'}
+                    </span>
+                  </div>
+
+                  <div className={`cat-expand-arrow ${isExpanded ? 'arrow-rotated' : ''}`}>
+                    <ChevronDown size={18} />
+                  </div>
+                </div>
+
+                {/* Expandable Skills List */}
+                <AnimatePresence>
+                  {isExpanded && (
+                    <motion.div
+                      key="skills-tray"
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                      className="cat-skills-dropdown"
+                    >
+                      <div className="cat-dropdown-divider"></div>
+                      <div className="cat-skills-list">
+                        {category.skills.map((skill, sIdx) => (
+                          <div key={sIdx} className="skill-item-row">
+                            <div className="skill-check-circle">
+                              <Check size={12} className="check-icon" />
+                            </div>
+                            <div className="skill-info">
+                              <span className="skill-label">{skill.name}</span>
+                              <small className="skill-highlight-text">{skill.highlight}</small>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

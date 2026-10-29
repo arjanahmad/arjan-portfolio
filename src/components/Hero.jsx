@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Download, PhoneCall, Mail, Sparkles, Code, CheckCircle2, Shield } from 'lucide-react';
+import { ArrowRight, Download, PhoneCall, Mail, Code, CheckCircle2, Shield } from 'lucide-react';
 import { FiGithub, FiLinkedin } from 'react-icons/fi';
 import devAvatar from '../assets/dev_avatar.png';
 import devAvatar2 from '../assets/dev_avatar_2.jpg';
@@ -39,13 +39,16 @@ const Hero = () => {
           setCurrentText(fullText.substring(0, currentText.length + 1));
         }, 70);
       } else {
-        setIsTypingComplete(true);
         timer = setTimeout(() => {
-          setIsTypingComplete(false);
-          setCurrentText("");
-          setCurrentRoleIndex((prev) => (prev + 1) % roles.length);
+          setIsTypingComplete(true);
         }, 2200);
       }
+    } else {
+      timer = setTimeout(() => {
+        setIsTypingComplete(false);
+        setCurrentText("");
+        setCurrentRoleIndex((prev) => (prev + 1) % roles.length);
+      }, 50);
     }
 
     return () => clearTimeout(timer);
@@ -221,23 +224,6 @@ const Hero = () => {
                     zIndex: activeImageIndex === 1 ? 2 : 1
                   }}
                 />
-              </div>
-
-              {/* Floating Highlight Chips */}
-              <div className="floating-badge badge-top-right glass-card">
-                <Sparkles size={16} className="badge-sparkle-icon" />
-                <div>
-                  <strong>CodeX Top Performer</strong>
-                  <small>SRMU Techfest</small>
-                </div>
-              </div>
-
-              <div className="floating-badge badge-bottom-left glass-card">
-                <Code size={16} className="badge-code-icon" />
-                <div>
-                  <strong>Modern Web Stack</strong>
-                  <small>React • JavaScript • CSS3</small>
-                </div>
               </div>
             </div>
           </motion.div>

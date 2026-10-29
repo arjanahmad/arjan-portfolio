@@ -37,7 +37,7 @@ const certificationsData = [
     date: "19th August 2026",
     certId: "NO: fa4e7b83-4d50-4632-af87-8ec757ebcbef",
     description: "Comprehensive training covering network fundamentals, defensive protocols, footprinting methodologies, and web application security standards.",
-    verifyUrl: "https://drive.google.com/file/d/1Ta9IYNJsUhZHY_KRw5364e1f0dlvlBvi/view?usp=sharing"
+    verifyUrl: "https://drive.google.com/file/d/1OAF2He_itl2DmzKPvbRNyZkvzbGvyqji/view?usp=drive_link"
   },
   {
     id: 5,
